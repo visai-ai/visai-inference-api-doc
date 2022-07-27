@@ -1,0 +1,51 @@
+{
+  "type": "api",
+  "id": "missing-summary-4",
+  "unversionedId": "missing-summary-4",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-4",
+  "frontMatter": {},
+  "api": {
+    "description": "This method will return the AOI subscription based on the user session and the linked account",
+    "method": "get",
+    "path": "/api/aoi/subscriptions/pair/{pairId}",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/api/aoi/subscriptions/pair/:pairId",
+      "description": {
+        "content": "This method will return the AOI subscription based on the user session and the linked account",
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "api",
+          "aoi",
+          "subscriptions",
+          "pair",
+          ":pairId"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "GET"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-4",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-3"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-5"
+  }
+}

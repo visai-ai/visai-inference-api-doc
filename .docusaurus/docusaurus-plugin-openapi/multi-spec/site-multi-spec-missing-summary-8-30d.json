@@ -1,0 +1,51 @@
+{
+  "type": "api",
+  "id": "missing-summary-8",
+  "unversionedId": "missing-summary-8",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-8",
+  "frontMatter": {},
+  "api": {
+    "description": "",
+    "method": "delete",
+    "path": "/maintenance/partners/{partnerId}/accounts/{accountId}/history",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/maintenance/partners/:partnerId/accounts/:accountId/history",
+      "description": {
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "maintenance",
+          "partners",
+          ":partnerId",
+          "accounts",
+          ":accountId",
+          "history"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "DELETE"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-8",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-7"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-9"
+  }
+}

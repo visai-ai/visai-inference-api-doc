@@ -1,0 +1,52 @@
+{
+  "type": "api",
+  "id": "missing-summary-9",
+  "unversionedId": "missing-summary-9",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-9",
+  "frontMatter": {},
+  "api": {
+    "description": "Proxy to PAUL's check if link exists",
+    "method": "get",
+    "path": "/partners/accounts/{accountId}/links/{partnerId}/exists",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/partners/accounts/:accountId/links/:partnerId/exists",
+      "description": {
+        "content": "Proxy to PAUL's check if link exists",
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "partners",
+          "accounts",
+          ":accountId",
+          "links",
+          ":partnerId",
+          "exists"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "GET"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-9",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-8"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/multi-spec/introduction"
+  }
+}

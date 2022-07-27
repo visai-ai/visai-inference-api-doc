@@ -1,0 +1,51 @@
+{
+  "type": "api",
+  "id": "missing-summary",
+  "unversionedId": "missing-summary",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary",
+  "frontMatter": {},
+  "api": {
+    "responses": {
+      "200": {
+        "description": "OK"
+      }
+    },
+    "description": "",
+    "method": "get",
+    "path": "/health",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/health",
+      "description": {
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "health"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "GET"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary",
+  "previous": {
+    "title": "Retrieve a bucket's headers",
+    "permalink": "/multi-spec/retrieve-a-buckets-headers"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-1"
+  }
+}

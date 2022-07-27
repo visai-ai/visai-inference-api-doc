@@ -1,0 +1,49 @@
+{
+  "type": "api",
+  "id": "missing-summary-3",
+  "unversionedId": "missing-summary-3",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-3",
+  "frontMatter": {},
+  "api": {
+    "description": "This method will create a new AOI subscription",
+    "method": "post",
+    "path": "/api/aoi/subscriptions",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/api/aoi/subscriptions",
+      "description": {
+        "content": "This method will create a new AOI subscription",
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "api",
+          "aoi",
+          "subscriptions"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "POST"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-3",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-2"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-4"
+  }
+}

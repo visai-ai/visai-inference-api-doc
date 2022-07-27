@@ -1,0 +1,59 @@
+# Creates list of users with given input array
+
+<table style={{"display":"table","width":"100%"}}><thead><tr><th style={{"textAlign":"left"}}>Request Body <span style={{"opacity":"0.6"}}> — </span><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> REQUIRED</strong><div>
+
+List of user object
+
+</div></th></tr></thead><tbody><tr><td><span style={{"opacity":"0.6"}}> User[]</span><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><tbody><tr><td><code>id</code><span style={{"opacity":"0.6"}}> int64</span></td></tr><tr><td><code>pet</code><span style={{"opacity":"0.6"}}> </span></td></tr><tr><td><code>username</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 4 ≤ length
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User supplied username
+
+</div></td></tr><tr><td><code>firstName</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 1 ≤ length
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User first name
+
+</div></td></tr><tr><td><code>lastName</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 1 ≤ length
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User last name
+
+</div></td></tr><tr><td><code>email</code><span style={{"opacity":"0.6"}}> email</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User email address
+
+</div></td></tr><tr><td><code>password</code><span style={{"opacity":"0.6"}}> password</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 8 ≤ length, Value must match regular expression `/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/`
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User password, MUST contain a mix of upper and lower case letters, as well as digits
+
+</div></td></tr><tr><td><code>phone</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** Value must match regular expression `/^\+(?:[0-9]-?){6,14}[0-9]$/`
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User phone number in international format
+
+</div></td></tr><tr><td><code>userStatus</code><span style={{"opacity":"0.6"}}> int32</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+User status
+
+</div></td></tr></tbody></table></td></tr></tbody></table><table style={{"display":"table","width":"100%"}}><thead><tr><th style={{"textAlign":"left"}}>Responses</th></tr></thead><tbody><tr><td><div style={{"display":"flex"}}><div style={{"marginRight":"var(--ifm-table-cell-padding)"}}><code>default</code></div><div>
+
+successful operation
+
+</div></div><div></div></td></tr></tbody></table>

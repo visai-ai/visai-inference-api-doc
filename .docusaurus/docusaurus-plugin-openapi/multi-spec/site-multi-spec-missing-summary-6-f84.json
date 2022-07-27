@@ -1,0 +1,49 @@
+{
+  "type": "api",
+  "id": "missing-summary-6",
+  "unversionedId": "missing-summary-6",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-6",
+  "frontMatter": {},
+  "api": {
+    "description": "",
+    "method": "get",
+    "path": "/api/exchange/orders/{transactionId}",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/api/exchange/orders/:transactionId",
+      "description": {
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "api",
+          "exchange",
+          "orders",
+          ":transactionId"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "GET"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-6",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-5"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-7"
+  }
+}

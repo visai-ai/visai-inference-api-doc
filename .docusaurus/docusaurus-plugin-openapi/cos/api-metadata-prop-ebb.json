@@ -1,0 +1,57 @@
+{
+  "apiSidebars": {
+    "openapi-sidebar-cos": [
+      {
+        "type": "category",
+        "label": "Authentication",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Generating an IAM token",
+            "href": "/cos/generating-an-iam-token",
+            "docId": "generating-an-iam-token",
+            "className": "api-method post"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Bucket operations",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "List buckets",
+            "href": "/cos/list-buckets",
+            "docId": "list-buckets",
+            "className": "api-method get"
+          },
+          {
+            "type": "link",
+            "label": "Create a bucket",
+            "href": "/cos/create-a-bucket",
+            "docId": "create-a-bucket",
+            "className": "api-method put"
+          },
+          {
+            "type": "link",
+            "label": "Retrieve a bucket's headers",
+            "href": "/cos/retrieve-a-buckets-headers",
+            "docId": "retrieve-a-buckets-headers",
+            "className": "api-method head"
+          }
+        ]
+      },
+      {
+        "type": "category",
+        "label": "API",
+        "collapsible": true,
+        "collapsed": true,
+        "items": []
+      }
+    ]
+  }
+}

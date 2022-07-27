@@ -1,0 +1,87 @@
+# Finds Pets by tags
+
+:::caution deprecated
+
+This endpoint has been deprecated and may be removed in future versions of the API.
+
+:::
+
+Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+
+<table style={{"display":"table","width":"100%"}}><thead><tr><th style={{"textAlign":"left"}}>Query Parameters</th></tr></thead><tbody><tr><td><code>tags</code><span style={{"opacity":"0.6"}}> string[]</span><span style={{"opacity":"0.6"}}> — </span><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> REQUIRED</strong><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Tags to filter by
+
+</div></td></tr></tbody></table><table style={{"display":"table","width":"100%"}}><thead><tr><th style={{"textAlign":"left"}}>Responses</th></tr></thead><tbody><tr><td><div style={{"display":"flex"}}><div style={{"marginRight":"var(--ifm-table-cell-padding)"}}><code>200</code></div><div>
+
+successful operation
+
+</div></div><div><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><thead><tr><th style={{"textAlign":"left"}}>Schema <div></div></th></tr></thead><tbody><tr><td><span style={{"opacity":"0.6"}}> Pet[]</span><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><tbody><tr><td><code>id</code><span style={{"opacity":"0.6"}}> int64</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Pet ID
+
+</div></td></tr><tr><td><code>category</code><span style={{"opacity":"0.6"}}> Category</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Categories this pet belongs to
+
+</div><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><tbody><tr><td><code>id</code><span style={{"opacity":"0.6"}}> int64</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Category ID
+
+</div></td></tr><tr><td><code>name</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 1 ≤ length
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Category name
+
+</div></td></tr><tr><td><code>sub</code><span style={{"opacity":"0.6"}}> object</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Test Sub Category
+
+</div><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><tbody><tr><td><code>prop1</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Dumb Property
+
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td><code>name</code><span style={{"opacity":"0.6"}}> string</span><span style={{"opacity":"0.6"}}> — </span><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> REQUIRED</strong><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+The name given to a pet
+
+</div></td></tr><tr><td><code>photoUrls</code><span style={{"opacity":"0.6"}}> url[]</span><span style={{"opacity":"0.6"}}> — </span><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> REQUIRED</strong><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+The list of URL to a cute photos featuring pet
+
+</div></td></tr><tr><td><code>friend</code><span style={{"opacity":"0.6"}}>  (circular)</span></td></tr><tr><td><code>tags</code><span style={{"opacity":"0.6"}}> Tag[]</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Tags attached to the pet
+
+</div><table style={{"display":"table","width":"100%","marginTop":"var(--ifm-table-cell-padding)","marginBottom":"0px"}}><tbody><tr><td><code>id</code><span style={{"opacity":"0.6"}}> int64</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Tag ID
+
+</div></td></tr><tr><td><code>name</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** 1 ≤ length
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Tag name
+
+</div></td></tr></tbody></table></td></tr><tr><td><code>status</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+**Possible values:** [`available`, `pending`, `sold`]
+
+</div><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Pet status in the store
+
+</div></td></tr><tr><td><code>petType</code><span style={{"opacity":"0.6"}}> string</span><div style={{"marginTop":"var(--ifm-table-cell-padding)"}}>
+
+Type of a pet
+
+</div></td></tr></tbody></table></td></tr></tbody></table></div></td></tr><tr><td><div style={{"display":"flex"}}><div style={{"marginRight":"var(--ifm-table-cell-padding)"}}><code>400</code></div><div>
+
+Invalid tag value
+
+</div></div><div></div></td></tr></tbody></table>

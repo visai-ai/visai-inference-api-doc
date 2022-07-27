@@ -1,0 +1,39 @@
+diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiPage/index.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiPage/index.js
+index 1dde757..a4217a1 100644
+--- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiPage/index.js
++++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiPage/index.js
+@@ -11,7 +11,7 @@ import { translate } from "@docusaurus/Translate";
+ import { MDXProvider } from "@mdx-js/react";
+ import BackToTopButton from "@theme/BackToTopButton";
+ import DocSidebar from "@theme/DocSidebar";
+-import IconArrow from "@theme/IconArrow";
++import IconArrow from "@theme/Icon/Arrow";
+ import Layout from "@theme/Layout";
+ import MDXComponents from "@theme/MDXComponents";
+ import NotFound from "@theme/NotFound";
+diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiPage/index.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiPage/index.js
+index a2a4a4d..7da8d91 100644
+--- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiPage/index.js
++++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiPage/index.js
+@@ -19,7 +19,7 @@ var _BackToTopButton = _interopRequireDefault(require("@theme/BackToTopButton"))
+ 
+ var _DocSidebar = _interopRequireDefault(require("@theme/DocSidebar"));
+ 
+-var _IconArrow = _interopRequireDefault(require("@theme/IconArrow"));
++var _IconArrow = _interopRequireDefault(require("@theme/Icon/Arrow"));
+ 
+ var _Layout = _interopRequireDefault(require("@theme/Layout"));
+ 
+diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiPage/index.tsx b/node_modules/docusaurus-theme-openapi/src/theme/ApiPage/index.tsx
+index f73fb07..858dbb1 100644
+--- a/node_modules/docusaurus-theme-openapi/src/theme/ApiPage/index.tsx
++++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiPage/index.tsx
+@@ -16,7 +16,7 @@ import type { ApiRoute } from "@theme/ApiItem";
+ import type { Props } from "@theme/ApiPage";
+ import BackToTopButton from "@theme/BackToTopButton";
+ import DocSidebar from "@theme/DocSidebar";
+-import IconArrow from "@theme/IconArrow";
++import IconArrow from "@theme/Icon/Arrow";
+ import Layout from "@theme/Layout";
+ import MDXComponents from "@theme/MDXComponents";
+ import NotFound from "@theme/NotFound";

@@ -1,0 +1,49 @@
+{
+  "type": "api",
+  "id": "missing-summary-2",
+  "unversionedId": "missing-summary-2",
+  "title": "Missing summary",
+  "description": "",
+  "slug": "/missing-summary-2",
+  "frontMatter": {},
+  "api": {
+    "description": "",
+    "method": "get",
+    "path": "/account/pairs/{pairId}/linking-caps",
+    "info": {
+      "title": "",
+      "version": ""
+    },
+    "postman": {
+      "name": "/account/pairs/:pairId/linking-caps",
+      "description": {
+        "type": "text/plain"
+      },
+      "url": {
+        "path": [
+          "account",
+          "pairs",
+          ":pairId",
+          "linking-caps"
+        ],
+        "host": [
+          "{{baseUrl}}"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "method": "GET"
+    }
+  },
+  "source": "@site/examples/openapi-issue-21.json",
+  "sourceDirName": ".",
+  "permalink": "/multi-spec/missing-summary-2",
+  "previous": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-1"
+  },
+  "next": {
+    "title": "Missing summary",
+    "permalink": "/multi-spec/missing-summary-3"
+  }
+}
