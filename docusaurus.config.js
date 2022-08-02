@@ -8,8 +8,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "VISAI API Documentation",
   tagline: "AI Platform Inference API",
-  url: "https://docusaurus-openapi.netlify.app",
-  baseUrl: "/",
+  url: "https://visai-ai.github.io",
+  baseUrl: "/visai-inference-api-doc/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
