@@ -6,8 +6,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Docusaurus OpenAPI",
-  tagline: "OpenAPI plugin for generating API reference docs in Docusaurus v2.",
+  title: "VISAI API Documentation",
+  tagline: "AI Platform Inference API",
   url: "https://docusaurus-openapi.netlify.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -21,10 +21,10 @@ const config = {
       "docusaurus-preset-openapi",
       /** @type {import('docusaurus-preset-openapi').Options} */
       ({
-        api: {
-          path: "examples/petstore.yaml",
-          routeBasePath: "petstore",
-        },
+        // api: {
+        //   path: "api/inference-api.yaml",
+        //   routeBasePath: "/",
+        // },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
@@ -62,6 +62,14 @@ const config = {
         routeBasePath: "multi-spec",
       },
     ],
+    [
+      "docusaurus-plugin-openapi",
+      {
+        id: "inference-api",
+        path: "api",
+        routeBasePath: "inference-api",
+      },
+    ],
   ],
 
   themeConfig:
@@ -72,45 +80,68 @@ const config = {
         defaultMode: "dark",
       },
       navbar: {
-        title: "OpenAPI",
+        title: "API Documentation",
         logo: {
-          alt: "Docusaurus Logo",
-          src: "img/logo.svg",
+          alt: "VISAI",
+          src: "img/visai.png",
         },
         items: [
+          // {
+          //   type: "doc",
+          //   docId: "intro",
+          //   position: "left",
+          //   label: "Docs",
+          // },
           {
-            type: "doc",
-            docId: "intro",
+            docId: "api-doc",
             position: "left",
-            label: "Docs",
-          },
-          {
-            label: "Examples",
-            position: "left",
+            label: "API",
             items: [
-              { to: "/petstore", label: "Petstore" },
-              { to: "/cos", label: "Cloud Object Storage" },
-              { to: "/multi-spec", label: "Multi-spec" },
+              {
+                to: "/inference-api/optical-character-recognition-inference-api-1",
+                label: "Optical Character Recognition",
+              },
+              {
+                to: "/inference-api/sentiment-anlaysis-inference-api-1",
+                label: "Sentiment Anlaysis",
+              },
+              {
+                to: "/inference-api/speech-to-text-inference-api-1",
+                label: "Speech to Text",
+              },
+              {
+                to: "/inference-api/word-tokenization-inference-api-1",
+                label: "Word Tokenization",
+              },
             ],
           },
-          {
-            href: "https://github.com/cloud-annotations/docusaurus-openapi",
-            position: "right",
-            className: "header-github-link",
-            "aria-label": "GitHub repository",
-          },
+          // {
+          //   label: "Examples",
+          //   position: "left",
+          //   items: [
+          //     { to: "/petstore", label: "Petstore" },
+          //     { to: "/cos", label: "Cloud Object Storage" },
+          //     { to: "/multi-spec", label: "Multi-spec" },
+          //   ],
+          // },
+          // {
+          //   href: "https://visai.ai/",
+          //   position: "right",
+          //   className: "header-github-link",
+          //   "aria-label": "GitHub repository",
+          // },
         ],
       },
       footer: {
         style: "dark",
         logo: {
           alt: "Deploys by Netlify",
-          src: "https://www.netlify.com/img/global/badges/netlify-color-accent.svg",
+          src: "img/visai.png",
           width: 160,
-          height: 51,
-          href: "https://www.netlify.com",
+          height: 40,
+          href: "https://visai.ai/",
         },
-        copyright: `Copyright © ${new Date().getFullYear()} Cloud Annotations. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} VISAI. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,

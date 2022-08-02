@@ -1,0 +1,80 @@
+openapi: 3.0.3
+servers:
+  - url: https://infer-staging.visai.ai/v1/inference-servers/
+    description: Default server
+  - url: //petstore.swagger.io/sandbox
+    description: Sandbox server
+info:
+  title: Word Tokenization
+  version: 1.0.0
+  description: |
+    **Word tokenization** is a process of defining boundaries between words in a sentence. Tokenization is a method of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character. In this model, a token refers to a word. Word tokenization is essential to many Natural Language Processing (NLP) pipelines such as text search, keyword extraction, etc. It is also crucial to doing NLP in Thai language which does not have word boundary in a sentence (no spaces between words).
+
+    # Base Model - Dictionary based
+    > **Provider: PyThaiNLP**
+
+    We employ PyThaiNLP's dictionary-based word tokenization module¹ for this version of the Thai word tokenization Base model. The dictionary that the Base models used is provided beforehand². As a result, this may not be able to tokenize sentences containing out-of-vocabulary tokens (e.g., product names and person names transliterated from foreign languages). We evaluate the word segmentation performance on the test set VISTEC-TP-TH-2021 corpus³, a collection of 49,997 text samples from Twitter, annotated by Thai linguists.
+
+    1. Repository: [PyThaiNLP/nlpo3](https://github.com/PyThaiNLP/nlpo3)
+    2. The dictionary file that we used is available at [PyThaiNLP/pythainlp](https://raw.githubusercontent.com/PyThaiNLP/pythainlp/v3.0.5/pythainlp/corpus/words_th.txt)
+    3. VISTEC-TP-TH-2021 corpus is available at [OSKut/VISTEC-TP-TH-2021](https://github.com/mrpeerat/OSKut/tree/main/VISTEC-TP-TH-2021)
+
+    # Authentication
+    Word Tokenization requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+      - x-api-key
+paths:
+  /base/infer-106b3bdd:
+    post:
+      summary: Word Tokenization Inference API
+      operationId: post-word-tokenization-inference
+      responses:
+        "200":
+          description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    description: List of smaller units (tokens)
+                    items:
+                      type: string
+              examples:
+                example-1:
+                  value:
+                    tokens:
+                      - - วิสัย
+                        - บริษัท
+                        - ผู้พัฒนา
+                        - แพลตฟอร์ม
+                      - - ก่อตั้ง
+                        - เมื่อ
+                        - กุมภาพันธ์
+                        - " "
+                        - "2022"
+      description: Split a large sample of text into tokens
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          required: true
+          description: Your API Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentence
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - วิสัยบริษัทผู้พัฒนาแพลตฟอร์ม
+                  - ก่อตั้งเมื่อกุมภาพันธ์ 2022
+        required: true
+    parameters: []

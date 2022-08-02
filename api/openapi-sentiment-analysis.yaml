@@ -1,0 +1,84 @@
+openapi: 3.0.3
+servers:
+  - url: https://infer-dev.visai.ai/v1/inference-servers/
+    description: Default server
+  - url: //petstore.swagger.io/sandbox
+    description: Sandbox server
+info:
+  title: Sentiment Analysis
+  version: 1.0.2
+  description: |
+    **Sentiment analysis** is a text classification model that analyses the given sentence and determines its underlying sentiment—Positive, Neutral, and Negative. This method is often used in business to gauge opinions of individuals or groups. This model can be integrated with several use cases, most of which focus on customer experience management, social monitoring, customer feedback, and voice of the customer or employee.
+
+    # Base Model - Product Review
+    > **Provider: VISAI.ai**
+
+    The model is trained from the online shopping product review dataset, where we focus mostly on product reviews on multiple categories including female fashion, male fashion, cosmetic, electronic devices & gadgets, etc. This model is specifically trained to predict sentiments based on a specific domain while putting emphasis on customer's product review sentences. Therefore, the model performance could be worsened if the prompt data is in a different domain. For example, in domains such as social media comment, healthcare, legal, or other data that its domain is not product review based, it is expec^Cd that a model performance would be bad.
+
+    # Authentication
+    Sentiment Analysis requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+      - x-api-key
+
+paths:
+  /base/infer-8134614f:
+    post:
+      summary: Sentiment Anlaysis Inference API
+      description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
+      operationId: post-sentiment-snalysis-inference
+      responses:
+        "200":
+          description: Return list of JSON where each element is another key-value object that contains its sentence and its predicted probability of each class.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    inputs:
+                      type: string
+                      description: Sentense
+                    results:
+                      type: object
+                      description: Results of predicted probability of each class
+                      properties:
+                        Positive:
+                          type: number
+                          description: Positive predicted probability
+                        Neutral:
+                          type: number
+                          description: Neutral predicted probability
+                        Negative:
+                          type: number
+                          description: Negative predicted probability
+              example:
+                value:
+                  - inputs: สวัสดีครับ
+                    results:
+                      Positive: 0.7945334467741602
+                      Neutral: 0.1721096410630493
+                      Negative: 0.0333569121627906
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: x-api-key
+          description: Your API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentences
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - สินค้าดี
+                  - ส่งไวมาก
+        required: true
+    parameters: []

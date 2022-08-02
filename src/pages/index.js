@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro"
+            to="/inference-api"
           >
             Get Started
           </Link>
@@ -30,13 +30,11 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`Introduction ${siteConfig.title}`}
+      description="VISAI API Documentation <head />"
     >
       <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+      <main>{/* <HomepageFeatures /> */}</main>
     </Layout>
   );
 }

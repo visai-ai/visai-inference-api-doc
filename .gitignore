@@ -90,3 +90,12 @@ sw.*
 *.swp
 
 .vscode
+
+.eslintcache
+
+yarn-error.log
+build
+coverage
+.docusaurus
+.cache-loader
+

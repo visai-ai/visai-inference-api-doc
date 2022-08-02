@@ -1,0 +1,115 @@
+openapi: 3.0.3
+servers:
+  - url: https://infer-dev.visai.ai/v1/inference-servers/
+    description: Default server
+  - url: //petstore.swagger.io/sandbox
+    description: Sandbox server
+info:
+  title: Speech to Text
+  version: 1.0.0
+  description: |
+    **Speech to Text** or **Automatic Speech Recognition (ASR)** is one of the machine learning tasks that aim to predict the corresponding transcription from a given audio input. ASR can be beneficial for several use cases, such as online course transcription, movie subtitle, call center transcription, and so forth.
+
+    # Base Model - Thai Speech to Text
+    > **Provider: Gowajee**
+
+    We utilized a model from our partner, [Gowajee](https://www.gowajee.ai/). The model is trained by using over 1,000 hours of annotated data collected online by our partner from various sources. This model can perform in general topics but specializes in call center. The model could be worsened if audio contains code switching, low-quality speech, and overlapping speech data. The model's performance was evaluated on around 60 hours of speech data, which was collected from the same source as the training data.
+
+    # Authentication
+    Speech to Text requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+      - x-api-key
+paths:
+  /base/infer-710d3943:
+    post:
+      summary: Speech to Text Inference API
+      description: "Process human speech into readable text"
+      operationId: post-speech-to-text-inference
+      responses:
+        "200":
+          description: Return list of transcribed text that corresponds to speech detected in audio.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filename:
+                          type: string
+                          description: Name of audio file
+                        duration:
+                          type: string
+                          description: Total time(sec) of audio file
+                        predictions:
+                          type: array
+                          description: List of outputs corresponds to speech detected in audio file
+                          items:
+                            type: object
+                            properties:
+                              transcript:
+                                type: string
+                                description: Transcribed text
+                              start_time:
+                                type: string
+                                description: Start time(sec) of transcribed text
+                              end_time:
+                                type: string
+                                description: End time(sec) of transcribed text
+                              speaking_rate:
+                                type: string
+                                description: Speaking rate of each transcription // optional
+                              word_timestamps:
+                                type: array
+                                description: List of time offsets of each word // optional
+                                items:
+                                  type: object
+                                  properties:
+                                    word:
+                                      type: string
+                                      description: Transcribed word // optional
+                                    start_time:
+                                      type: string
+                                      description: Start time(sec) offset of word // optional
+                                    end_time:
+                                      type: string
+                                      description: End time(sec) offset of word // optional
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: string
+                  format: binary
+                  description: Audio file
+                  required: true
+                optional:
+                  type: object
+                  description: Optional settings
+                  properties:
+                    word_timestamps:
+                      type: boolean
+                      description: Time offsets of each word (*default is 'false'*)
+                    speaking_rate:
+                      type: boolean
+                      description: The speaking rate of each transcription for speech fluency analysis in the audio (*default is 'false'*)
+                    decoder_type:
+                      type: string
+                      description: Set decoding methods from the three methods [Greedy, BeamSearch, LMBeamSearch] (*default is 'beam search with language model'*)
+                    word_list:
+                      type: array
+                      description: List of terminology
+                      items:
+                        type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          description: Your API key
+          required: true
+    parameters: []
