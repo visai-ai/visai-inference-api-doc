@@ -46,22 +46,22 @@ const config = {
   ],
 
   plugins: [
-    [
-      "docusaurus-plugin-openapi",
-      {
-        id: "cos",
-        path: "examples/openapi-cos.json",
-        routeBasePath: "cos",
-      },
-    ],
-    [
-      "docusaurus-plugin-openapi",
-      {
-        id: "multi-spec",
-        path: "examples",
-        routeBasePath: "multi-spec",
-      },
-    ],
+    // [
+    //   "docusaurus-plugin-openapi",
+    //   {
+    //     id: "cos",
+    //     path: "examples/openapi-cos.json",
+    //     routeBasePath: "cos",
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-openapi",
+    //   {
+    //     id: "multi-spec",
+    //     path: "examples",
+    //     routeBasePath: "multi-spec",
+    //   },
+    // ],
     [
       "docusaurus-plugin-openapi",
       {
@@ -98,19 +98,19 @@ const config = {
             label: "API",
             items: [
               {
-                to: "/inference-api/optical-character-recognition-inference-api-1",
+                to: "/inference-api/optical-character-recognition-inference-api",
                 label: "Optical Character Recognition",
               },
               {
-                to: "/inference-api/sentiment-anlaysis-inference-api-1",
+                to: "/inference-api/sentiment-anlaysis-inference-api",
                 label: "Sentiment Anlaysis",
               },
               {
-                to: "/inference-api/speech-to-text-inference-api-1",
+                to: "/inference-api/speech-to-text-inference-api",
                 label: "Speech to Text",
               },
               {
-                to: "/inference-api/word-tokenization-inference-api-1",
+                to: "/inference-api/word-tokenization-inference-api",
                 label: "Word Tokenization",
               },
             ],
