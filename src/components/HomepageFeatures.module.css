@@ -9,3 +9,16 @@
   height: 200px;
   width: 200px;
 }
+
+.title {
+  margin-top: 1.5rem;
+}
+
+html[data-theme="dark"] .featuresLink {
+  color: #ffffff !important;
+}
+
+
+html[data-theme="light"] .featuresLink {
+  color: #3F13A6 !important;
+}

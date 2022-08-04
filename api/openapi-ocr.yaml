@@ -1,9 +1,7 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer-dev.visai.ai/v1/inference-servers/
+  - url: https://ocr-depa-acp.visai.ai/predict
     description: Default server
-  - url: //petstore.swagger.io/sandbox
-    description: Sandbox server
 info:
   title: Optical Character Recognition
   version: 1.0.0
@@ -15,10 +13,130 @@ info:
     # Authentication
     OCR requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
-
+tags:
+  - name: base-model
+    description: Base model inference API
+    x-displayName: Base model
+  - name: your-model
+    description: Your model inference API
+    x-displayName: Your model
+x-tagGroups:
+  - name: General
+    tags:
+      - base-model
+      - your-model
 paths:
-  /predict:
+  https://ocr-depa-acp.visai.ai/predict:
     post:
+      tags:
+        - base-model
+      deprecated: true
+      summary: Optical Character Recognition Inference API
+      operationId: post-ocr-inference
+      responses:
+        "200":
+          description: "Return list of bounding box coordinates and text"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    image_size:
+                      type: array
+                      description: Page width size, page height, and page number (ex. [430, 405, 3])
+                      items:
+                        type: integer
+                    results:
+                      type: array
+                      description: List of the coordinates of the extracted text. These coordinates consist of 4 points representing the box, and each coordinates contains 2 numerical values representing X and Y coordinates of the text location inside an image.
+                      items:
+                        type:
+                          - array
+                          - string
+                        items: {}
+                    texts:
+                      type: string
+                      description: Full texts of each page
+              example:
+                - image_size:
+                    - 430
+                    - 705
+                    - 3
+                  results:
+                    - - - - 116
+                          - 22
+                        - - 226
+                          - 22
+                        - - 226
+                          - 74
+                        - - 116
+                          - 74
+                      - สำเนา
+                    - - - - 42
+                          - 136
+                        - - 216
+                          - 136
+                        - - 216
+                          - 188
+                        - - 42
+                          - 188
+                      - สำเนาคู่ฉบับ
+                    - - - - 42
+                          - 198
+                        - - 248
+                          - 198
+                        - - 248
+                          - 248
+                        - - 42
+                          - 248
+                      - บันทึกข้อความ
+                    - - - - 104
+                          - 324
+                        - - 185
+                          - 324
+                        - - 185
+                          - 361
+                        - - 104
+                          - 361
+                      - "-"
+                    - - - - 568
+                          - 328
+                        - - 626
+                          - 328
+                        - - 626
+                          - 356
+                        - - 568
+                          - 356
+                      - "-"
+                  texts: สำเนา สำเนาคู่ฉบับ บันทึกข้อความ - -
+      description: "Convert an image of text into a machine-readable text format. "
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          required: true
+          description: Your API Key
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  description: Document file (.docx, .pptx, .pdf, .png, and .jpeg)
+                  type: string
+                  format: binary
+        description: ""
+        required: true
+    parameters: []
+  https://ocr-depa-acp.visai.ai/your/predict:
+    post:
+      tags:
+        - your-model
+      deprecated: true
       summary: Optical Character Recognition Inference API
       operationId: post-ocr-inference
       responses:

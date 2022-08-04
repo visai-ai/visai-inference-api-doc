@@ -15,7 +15,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className="button button--visai-primary button--lg"
             to="/inference-api"
           >
             Get Started
@@ -34,7 +34,9 @@ export default function Home() {
       description="VISAI API Documentation <head />"
     >
       <HomepageHeader />
-      <main>{/* <HomepageFeatures /> */}</main>
+      <main>
+        <HomepageFeatures />
+      </main>
     </Layout>
   );
 }

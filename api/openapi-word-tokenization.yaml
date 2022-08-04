@@ -1,9 +1,7 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer-staging.visai.ai/v1/inference-servers/
+  - url: https://infer.visai.ai/v1/inference-servers
     description: Default server
-  - url: //petstore.swagger.io/sandbox
-    description: Sandbox server
 info:
   title: Word Tokenization
   version: 1.0.0
@@ -22,11 +20,25 @@ info:
     # Authentication
     Word Tokenization requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
+tags:
+  - name: base-model
+    description: Base model inference API
+    x-displayName: Base Model API
+  - name: your-model
+    description: Your model inference API
+    x-displayName: Your Model API
+x-tagGroups:
+  - name: General
+    tags:
+      - base-model
+      - your-model
 paths:
-  /base/infer-106b3bdd:
+  /base/infer-3fff061a:
     post:
-      summary: Word Tokenization Inference API
-      operationId: post-word-tokenization-inference
+      tags:
+        - base-model
+      summary: word tokenization base-model
+      operationId: https://infer.visai.ai/v1/inference-servers
       responses:
         "200":
           description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character
@@ -61,6 +73,68 @@ paths:
           name: x-api-key
           required: true
           description: Your API Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentence
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - วิสัยบริษัทผู้พัฒนาแพลตฟอร์ม
+                  - ก่อตั้งเมื่อกุมภาพันธ์ 2022
+        required: true
+    parameters: []
+  "/your/{endpoint}":
+    post:
+      tags:
+        - your-model
+      summary: word tokenization your-model
+      operationId: https://infer.visai.ai/v1/inference-servers
+      parameters:
+        - name: x-api-key
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: endpoint
+          in: path
+          description: Your model endpoint
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    description: List of smaller units (tokens)
+                    items:
+                      type: string
+              examples:
+                example-1:
+                  value:
+                    tokens:
+                      - - วิสัย
+                        - บริษัท
+                        - ผู้พัฒนา
+                        - แพลตฟอร์ม
+                      - - ก่อตั้ง
+                        - เมื่อ
+                        - กุมภาพันธ์
+                        - " "
+                        - "2022"
+      description: Split a large sample of text into tokens
       requestBody:
         content:
           application/json:

@@ -1,50 +1,43 @@
 import React from "react";
 import clsx from "clsx";
 import styles from "./HomepageFeatures.module.css";
+import Link from "@docusaurus/Link";
 
 const FeatureList = [
   {
-    title: "Easy to Use",
-    Svg: require("../../static/img/undraw_docusaurus_mountain.svg").default,
+    title: "Sentiment Analysis",
+    src: require("../../static/img/sentiment_analysis_logo.webp").default,
+    href: "/inference-api/introduction-1",
     description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
+      <>Text contextual extraction to determine people's feelings.</>
     ),
   },
   {
-    title: "Focus on What Matters",
-    Svg: require("../../static/img/undraw_docusaurus_tree.svg").default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: "Speech to Text",
+    src: require("../../static/img/asr_logo.webp").default,
+    href: "/inference-api/introduction-2",
+    description: <>Transcribing speech into text using deep neural networks.</>,
   },
   {
-    title: "Powered by React",
-    Svg: require("../../static/img/undraw_docusaurus_react.svg").default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: "Word Tokenization",
+    src: require("../../static/img/word-tokenization_logo.webp").default,
+    href: "/inference-api/introduction-3",
+    description: <>Splitting sentences of text into words.</>,
   },
 ];
 
-function Feature({ Svg, title, description }) {
+function Feature({ src, title, href, description }) {
   return (
     <div className={clsx("col col--4")}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} alt={title} />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
+      <Link className={styles.featuresLink} to={href}>
+        <div className="text--center">
+          <img src={src} className={styles.featureSvg} alt={title} />
+        </div>
+        <div className="text--center padding-horiz--md">
+          <h2 className={styles.title}>{title}</h2>
+          <p>{description}</p>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -76,7 +76,7 @@ const config = {
     /** @type {import('docusaurus-preset-openapi').ThemeConfig} */
     ({
       colorMode: {
-        disableSwitch: true,
+        disableSwitch: false,
         defaultMode: "dark",
       },
       navbar: {
@@ -93,24 +93,19 @@ const config = {
           //   label: "Docs",
           // },
           {
-            docId: "api-doc",
             position: "left",
             label: "API",
             items: [
               {
-                to: "/inference-api/optical-character-recognition-inference-api",
-                label: "Optical Character Recognition",
-              },
-              {
-                to: "/inference-api/sentiment-anlaysis-inference-api",
+                to: "/inference-api/sentiment-anlaysis-base-model",
                 label: "Sentiment Anlaysis",
               },
               {
-                to: "/inference-api/speech-to-text-inference-api",
+                to: "/inference-api/speech-to-text-base-model",
                 label: "Speech to Text",
               },
               {
-                to: "/inference-api/word-tokenization-inference-api",
+                to: "/inference-api/word-tokenization-base-model",
                 label: "Word Tokenization",
               },
             ],

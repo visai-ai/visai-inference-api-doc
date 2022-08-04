@@ -5,12 +5,28 @@
  */
 
 :root {
+  /* --ifm-color-primary: #2980b9;
+  --ifm-color-primary-dark: #2573a7;
+  --ifm-color-primary-darker: #236d9d;
+  --ifm-color-primary-darkest: #1d5a82;
+  --ifm-color-primary-light: #2d8dcc;
+  --ifm-color-primary-lighter: #3293d2;
+  --ifm-color-primary-lightest: #4ea1d8;
   --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1); */
+
+  /* --ifm-font-family-monospace: "Fira Code", monospace; */
+  --ifm-font-size-base: 95%;
+  --ifm-code-font-size: 90%;
+
+  /* --ifm-background-color: var(--ifm-color-emphasis-0) !important; */
 }
 
 html[data-theme="dark"] {
-  --ifm-color-primary: #58a6ff;
+  --ifm-color-primary: #cfc0f0;
+  --ifm-color-secondary: #ebedf0;
   --ifm-background-color: #0d1117;
+  --ifm-badge-background-color: #ebedf0;
   --ifm-navbar-background-color: #0d1117;
   --ifm-color-emphasis-300: #30363d;
   --ifm-card-background-color: #161b22;
@@ -21,8 +37,24 @@ html[data-theme="dark"] {
   --openapi-monaco-background-color-dark: #0d1117 !important;
   --ifm-dropdown-background-color: #161b22;
 }
+html[data-theme="light"] {
+  --ifm-color-primary: #DFDAF1;
+  --ifm-color-secondary: #172642;
+  --ifm-background-color: #ffffff;
+  --ifm-badge-background-color: #fbfbfb;
+  --ifm-navbar-background-color: #fbfbfb;
+  --ifm-color-emphasis-300: #a7a7a7;
+  --ifm-card-background-color: #d0d0d0;
+  --ifm-code-background: rgba(218, 218, 218, 0.4);
+  --ifm-table-stripe-background: var(--ifm-table-background);
+  --openapi-input-background: rgba(238, 237, 239, 0.847) !important;
+  --openapi-monaco-border-color: #a9a9a9 !important;
+  --openapi-monaco-background-color-dark: #d0d0d0 !important;
+  --ifm-dropdown-background-color: #efefef !important;
 
-.navbar__link:hover {
+}
+
+html[data-theme="dark"] .navbar__link:hover {
   color: rgb(245, 246, 247, 0.7);
 }
 
@@ -30,7 +62,11 @@ html[data-theme="dark"] {
   color: unset;
 }
 
-.navbar__brand:hover {
+html[data-theme="light"] .badge--secondary {
+  --ifm-badge-background-color: #ecebeb;
+}
+
+html[data-theme="dark"] .navbar__brand:hover {
   color: rgb(245, 246, 247, 0.7);
 }
 
@@ -42,7 +78,7 @@ html[data-theme="dark"] {
   font-size: 90%;
 }
 
-.theme-api-markdown table {
+html[data-theme="dark"] .theme-api-markdown table {
   --ifm-code-background: #161b22;
   --ifm-table-border-color: #21262d;
 }
@@ -77,6 +113,22 @@ html[data-theme="dark"] {
 
 .theme-api-markdown table td {
   border: 0;
+}
+
+.button--visai-primary:not(.button--outline) {
+  --ifm-button-color: #3F13A6;
+  color: #ffffff;
+  --ifm-button-background-color: #3F13A6;
+}
+
+.button--visai-primary {
+  --ifm-button-color: #3F13A6;
+  color: #ffffff;
+  --ifm-button-background-color: #3F13A6;
+}
+
+.button--visai-primary:hover {
+  --ifm-button-color: #2b0c74;
 }
 
 .button--primary:not(.button--outline) {
@@ -155,9 +207,14 @@ html[data-theme="dark"] {
   --ifm-footer-background-color: var(--ifm-background-color);
 }
 
-.hero--primary {
+html[data-theme="dark"] .hero--primary {
   --ifm-hero-background-color: #161b22;
   --ifm-hero-text-color: var(--ifm-heading-color);
+}
+
+html[data-theme="light"] .hero--primary {
+  --ifm-hero-background-color: #161b22;
+  --ifm-hero-text-color: #ffffff
 }
 
 .docusaurus-highlight-code-line {
@@ -169,6 +226,10 @@ html[data-theme="dark"] {
 
 html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="light"] .docusaurus-highlight-code-line {
+  background-color: rgba(236, 236, 236, 0.3);
 }
 
 .header-github-link:hover {

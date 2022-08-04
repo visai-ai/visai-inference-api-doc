@@ -1,9 +1,7 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer-dev.visai.ai/v1/inference-servers/
+  - url: https://infer.visai.ai/v1/inference-servers
     description: Default server
-  - url: //petstore.swagger.io/sandbox
-    description: Sandbox server
 info:
   title: Sentiment Analysis
   version: 1.0.2
@@ -18,13 +16,26 @@ info:
     # Authentication
     Sentiment Analysis requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
-
+tags:
+  - name: base-model
+    description: Base model inference API
+    x-displayName: Base Model API
+  - name: your-model
+    description: Your model inference API
+    x-displayName: Your Model API
+x-tagGroups:
+  - name: General
+    tags:
+      - base-model
+      - your-model
 paths:
-  /base/infer-8134614f:
+  /base/infer-afcf8d12:
     post:
-      summary: Sentiment Anlaysis Inference API
+      tags:
+        - base-model
+      summary: sentiment anlaysis base-model
       description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
-      operationId: post-sentiment-snalysis-inference
+      operationId: https://infer.visai.ai/v1/inference-servers
       responses:
         "200":
           description: Return list of JSON where each element is another key-value object that contains its sentence and its predicted probability of each class.
@@ -65,6 +76,75 @@ paths:
           required: true
           name: x-api-key
           description: Your API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentences
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - สินค้าดี
+                  - ส่งไวมาก
+        required: true
+    parameters: []
+  "/your/{endpoint}":
+    post:
+      tags:
+        - your-model
+      summary: sentiment anlaysis your-model
+      description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
+      operationId: https://infer.visai.ai/v1/inference-servers
+      parameters:
+        - name: x-api-key
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: endpoint
+          in: path
+          description: Your model endpoint
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Return list of JSON where each element is another key-value object that contains its sentence and its predicted probability of each class.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    inputs:
+                      type: string
+                      description: Sentense
+                    results:
+                      type: object
+                      description: Results of predicted probability of each class
+                      properties:
+                        Positive:
+                          type: number
+                          description: Positive predicted probability
+                        Neutral:
+                          type: number
+                          description: Neutral predicted probability
+                        Negative:
+                          type: number
+                          description: Negative predicted probability
+              example:
+                value:
+                  - inputs: สวัสดีครับ
+                    results:
+                      Positive: 0.7945334467741602
+                      Neutral: 0.1721096410630493
+                      Negative: 0.0333569121627906
       requestBody:
         content:
           application/json:
