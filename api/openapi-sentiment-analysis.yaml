@@ -33,7 +33,7 @@ paths:
     post:
       tags:
         - base-model
-      summary: sentiment anlaysis base-model
+      summary: Sentiment anlaysis base-model
       description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
       operationId: https://infer.visai.ai/v1/inference-servers
       responses:
@@ -69,6 +69,8 @@ paths:
                       Positive: 0.7945334467741602
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
+        "401":
+          description: Unauthorized | incorrect x-api-key or x-api-key not have access to this model
       parameters:
         - schema:
             type: string
@@ -97,7 +99,7 @@ paths:
     post:
       tags:
         - your-model
-      summary: sentiment anlaysis your-model
+      summary: Sentiment anlaysis your-model
       description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
       operationId: https://infer.visai.ai/v1/inference-servers
       parameters:
@@ -145,6 +147,10 @@ paths:
                       Positive: 0.7945334467741602
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+        "404":
+          description: Not found | Incorrect endpoint
       requestBody:
         content:
           application/json:

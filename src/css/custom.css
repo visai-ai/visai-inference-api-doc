@@ -38,7 +38,7 @@ html[data-theme="dark"] {
   --ifm-dropdown-background-color: #161b22;
 }
 html[data-theme="light"] {
-  --ifm-color-primary: #DFDAF1;
+  --ifm-color-primary: #3F13A6;
   --ifm-color-secondary: #172642;
   --ifm-background-color: #ffffff;
   --ifm-badge-background-color: #fbfbfb;

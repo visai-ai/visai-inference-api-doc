@@ -33,7 +33,7 @@ paths:
     post:
       tags:
         - base-model
-      summary: speech to text base-model
+      summary: Speech to text base-model
       description: "Process human speech into readable text"
       operationId: https://infer.visai.ai/v1/inference-servers
       responses:
@@ -88,6 +88,8 @@ paths:
                                     end_time:
                                       type: string
                                       description: End time(sec) offset of word // optional
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
       requestBody:
         content:
           multipart/form-data:
@@ -97,19 +99,19 @@ paths:
                 files:
                   type: string
                   format: binary
-                  description: .wav speech file
+                  description: Audio speech file
                 word_timestamps:
                   type: string
-                  description: word_timestamps //optional
+                  description: true or false (default 'false')
                 speaking_rate:
                   type: string
-                  description: speaking_rate //optional
+                  description: true or false (default 'false')
                 decoder_type:
                   type: string
-                  description: decoder_type //optional
+                  description: Greedy, BeamSearch, or LMBeamSearch (default 'LMBeamSearch')
                 word_list:
                   type: string
-                  description: word_list //optional
+                  description: List of terminology ex. ['word', 'word', ...]
               required:
                 - files
       # requestBody:
@@ -130,7 +132,7 @@ paths:
     post:
       tags:
         - your-model
-      summary: speech to text your-model
+      summary: Speech to text your-model
       description: "Process human speech into readable text"
       operationId: https://infer.visai.ai/v1/inference-servers
       parameters:
@@ -197,6 +199,10 @@ paths:
                                     end_time:
                                       type: string
                                       description: End time(sec) offset of word // optional
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+        "404":
+          description: Not found | Incorrect endpoint
       requestBody:
         content:
           multipart/form-data:
@@ -206,15 +212,19 @@ paths:
                 files:
                   type: string
                   format: binary
-                  description: .wav speech file
+                  description: Audio speech file
                 word_timestamps:
                   type: string
+                  description: true or false (default 'false')
                 speaking_rate:
                   type: string
+                  description: true or false (default 'false')
                 decoder_type:
                   type: string
+                  description: Greedy, BeamSearch, or LMBeamSearch (default 'LMBeamSearch')
                 word_list:
                   type: string
+                  description: List of terminology ex. ['word', 'word', ...]
               required:
                 - files
       # requestBody:

@@ -1,0 +1,286 @@
+diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
+index 012fbbe..d7f81ac 100644
+--- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
++++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
+@@ -23,7 +23,6 @@ async function loadImage(content) {
+       const binaryStr = reader.result;
+       accept(binaryStr);
+     };
+-
+     reader.readAsArrayBuffer(content);
+   });
+ }
+@@ -139,7 +138,12 @@ async function makeRequest(request, proxy, _body) {
+         if (Array.isArray(body.formdata)) {
+           for (const data of body.formdata) {
+             if (data.key && data.value) {
+-              myBody.append(data.key, data.value);
++              let value = data.value
++                if (data.key === 'files') {
++                  let response = await fetch(value.content.preview)
++                  value = await response.blob()
++                }
++              myBody.append(data.key, value);
+             }
+           }
+         }
+@@ -149,6 +153,7 @@ async function makeRequest(request, proxy, _body) {
+ 
+       case "file": {
+         if (_body.type === "raw" && _body.content?.type === "file") {
++          console.log('file')
+           myBody = await loadImage(_body.content.value.content);
+         }
+ 
+@@ -167,11 +172,11 @@ async function makeRequest(request, proxy, _body) {
+   };
+   let finalUrl = request.url.toString();
+ 
+-  if (proxy) {
+-    // Ensure the proxy ends with a slash.
+-    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
+-    finalUrl = normalizedProxy + request.url.toString();
+-  }
++  // if (proxy) {
++  //   // Ensure the proxy ends with a slash.
++  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
++  //   finalUrl = normalizedProxy + request.url.toString();
++  // }
+ 
+   return await fetch(finalUrl, requestOptions).then((response) => {
+     return response.text();
+diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
+index 3ba58b3..5d9adc6 100644
+--- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
++++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
+@@ -79,10 +79,10 @@ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
+   postman.headers.clear();
+ 
+   if (contentType) {
+-    postman.addHeader({
+-      key: "Content-Type",
+-      value: contentType,
+-    });
++    // postman.addHeader({
++    //   key: "Content-Type",
++    //   value: contentType,
++    // });
+   }
+ 
+   if (accept) {
+@@ -156,12 +156,9 @@ function setBody(clonedPostman, body) {
+       const params = Object.entries(body.content)
+         .filter((entry) => !!entry[1])
+         .map(([key, content]) => {
+-          if (content.type === "file") {
+-            return new sdk.FormParam({
+-              key: key,
+-              ...content,
+-            });
+-          }
++          // if (content.type === "file") {
++          //   return new sdk.FormParam({ key: key, ...content });
++          // }
+ 
+           return new sdk.FormParam({
+             key: key,
+diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/store.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/store.js
+index e2e9607..48849a4 100644
+--- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/store.js
++++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/store.js
+@@ -26,5 +26,7 @@ export const createStoreWithState = (preloadedState, middlewares) =>
+     reducer: rootReducer,
+     preloadedState,
+     middleware: (getDefaultMiddleware) =>
+-      getDefaultMiddleware().concat(...middlewares),
++      getDefaultMiddleware({
++        serializableCheck: false
++    })
+   });
+diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
+index 5c7fa47..4bde407 100644
+--- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
++++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
+@@ -30,7 +30,6 @@ async function loadImage(content) {
+       const binaryStr = reader.result;
+       accept(binaryStr);
+     };
+-
+     reader.readAsArrayBuffer(content);
+   });
+ }
+@@ -154,7 +153,12 @@ async function makeRequest(request, proxy, _body) {
+           if (Array.isArray(body.formdata)) {
+             for (const data of body.formdata) {
+               if (data.key && data.value) {
+-                myBody.append(data.key, data.value);
++                let value = data.value
++                if (data.key === 'files') {
++                  let response = await fetch(value.content.preview)
++                  value = await response.blob()
++                }
++                myBody.append(data.key, value);
+               }
+             }
+           }
+@@ -167,6 +171,7 @@ async function makeRequest(request, proxy, _body) {
+           var _body$content;
+ 
+           if (_body.type === "raw" && ((_body$content = _body.content) === null || _body$content === void 0 ? void 0 : _body$content.type) === "file") {
++            console.log('file')
+             myBody = await loadImage(_body.content.value.content);
+           }
+ 
+@@ -185,11 +190,11 @@ async function makeRequest(request, proxy, _body) {
+   };
+   let finalUrl = request.url.toString();
+ 
+-  if (proxy) {
+-    // Ensure the proxy ends with a slash.
+-    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
+-    finalUrl = normalizedProxy + request.url.toString();
+-  }
++  // if (proxy) {
++  //   // Ensure the proxy ends with a slash.
++  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
++  //   finalUrl = normalizedProxy + request.url.toString();
++  // }
+ 
+   return await fetch(finalUrl, requestOptions).then(response => {
+     return response.text();
+diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
+index f0dffa2..5c6380f 100644
+--- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
++++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
+@@ -86,10 +86,10 @@ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
+   postman.headers.clear();
+ 
+   if (contentType) {
+-    postman.addHeader({
+-      key: "Content-Type",
+-      value: contentType
+-    });
++    // postman.addHeader({
++    //   key: "Content-Type",
++    //   value: contentType
++    // });
+   }
+ 
+   if (accept) {
+@@ -172,12 +172,9 @@ function setBody(clonedPostman, body) {
+         }
+ 
+         const params = Object.entries(body.content).filter(entry => !!entry[1]).map(([key, content]) => {
+-          if (content.type === "file") {
+-            return new _postmanCollection.default.FormParam({
+-              key: key,
+-              ...content
+-            });
+-          }
++          // if (content.type === "file") {
++          //   return new sdk.FormParam({ key: key, ...content });
++          // }
+ 
+           return new _postmanCollection.default.FormParam({
+             key: key,
+diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/store.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/store.js
+index b2dd68e..62a93c8 100644
+--- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/store.js
++++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/store.js
+@@ -42,7 +42,10 @@ const rootReducer = (0, _toolkit.combineReducers)({
+ const createStoreWithState = (preloadedState, middlewares) => (0, _toolkit.configureStore)({
+   reducer: rootReducer,
+   preloadedState,
+-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(...middlewares)
++  middleware: (getDefaultMiddleware) =>
++    getDefaultMiddleware({
++      serializableCheck: false
++  })
+ });
+ 
+ exports.createStoreWithState = createStoreWithState;
+\ No newline at end of file
+diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
+index d649242..332320d 100644
+--- a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
++++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
+@@ -144,7 +144,12 @@ async function makeRequest(
+         if (Array.isArray(body.formdata)) {
+           for (const data of body.formdata) {
+             if (data.key && data.value) {
+-              myBody.append(data.key, data.value);
++              let value = data.value
++                if (data.key === 'files') {
++                  let response = await fetch(value.content.preview)
++                  value = await response.blob()
++                }
++              myBody.append(data.key, value);
+             }
+           }
+         }
+@@ -152,6 +157,7 @@ async function makeRequest(
+       }
+       case "file": {
+         if (_body.type === "raw" && _body.content?.type === "file") {
++          console.log('file')
+           myBody = await loadImage(_body.content.value.content);
+         }
+         break;
+@@ -168,11 +174,11 @@ async function makeRequest(
+   };
+ 
+   let finalUrl = request.url.toString();
+-  if (proxy) {
+-    // Ensure the proxy ends with a slash.
+-    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
+-    finalUrl = normalizedProxy + request.url.toString();
+-  }
++  // if (proxy) {
++  //   // Ensure the proxy ends with a slash.
++  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
++  //   finalUrl = normalizedProxy + request.url.toString();
++  // }
+ 
+   return await fetch(finalUrl, requestOptions).then((response) => {
+     return response.text();
+diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
+index c5fccbd..aa0ded1 100644
+--- a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
++++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
+@@ -95,7 +95,7 @@ function setHeaders(
+ ) {
+   postman.headers.clear();
+   if (contentType) {
+-    postman.addHeader({ key: "Content-Type", value: contentType });
++    // postman.addHeader({ key: "Content-Type", value: contentType });
+   }
+   if (accept) {
+     postman.addHeader({ key: "Accept", value: accept });
+@@ -154,9 +154,9 @@ function setBody(clonedPostman: sdk.Request, body: Body) {
+       const params = Object.entries(body.content)
+         .filter((entry): entry is [string, NonNullable<Content>] => !!entry[1])
+         .map(([key, content]) => {
+-          if (content.type === "file") {
+-            return new sdk.FormParam({ key: key, ...content });
+-          }
++          // if (content.type === "file") {
++          //   return new sdk.FormParam({ key: key, ...content });
++          // }
+           return new sdk.FormParam({ key: key, value: content.value });
+         });
+       clonedPostman.body.formdata?.assimilate(params, false);
+diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/store.ts b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/store.ts
+index 27fde40..985adbd 100644
+--- a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/store.ts
++++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/store.ts
+@@ -35,7 +35,9 @@ export const createStoreWithState = (
+     reducer: rootReducer,
+     preloadedState,
+     middleware: (getDefaultMiddleware) =>
+-      getDefaultMiddleware().concat(...middlewares),
++      getDefaultMiddleware({
++        serializableCheck: false
++    })
+   });
+ 
+ export type AppDispatch = ReturnType<typeof createStoreWithState>["dispatch"];
