@@ -97,7 +97,7 @@ const config = {
             label: "API",
             items: [
               {
-                to: "/inference-api/sentiment-anlaysis-base-model",
+                to: "/inference-api/sentiment-analysis-base-model",
                 label: "Sentiment Anlaysis",
               },
               {
