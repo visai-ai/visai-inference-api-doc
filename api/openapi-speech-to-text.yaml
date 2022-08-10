@@ -33,8 +33,8 @@ paths:
     post:
       tags:
         - base-model
-      summary: Speech to text base-model
-      description: "Process human speech into readable text"
+      summary: Speech to Text Base-model
+      description: Process human speech into readable text
       operationId: https://infer.visai.ai/v1/inference-servers
       responses:
         "200":
@@ -88,8 +88,14 @@ paths:
                                     end_time:
                                       type: string
                                       description: End time(sec) offset of word // optional
+        "204":
+          description: No content | No result of transcription
+        "400":
+          description: No audio file | Not found audio file *or* Bad requests | Server cannot or will not process the request
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+        "415":
+          description: Can't decode [filename] | Unsupported file format
       requestBody:
         content:
           multipart/form-data:
@@ -132,8 +138,8 @@ paths:
     post:
       tags:
         - your-model
-      summary: Speech to text your-model
-      description: "Process human speech into readable text"
+      summary: Speech to Text Your-model
+      description: Process human speech into readable text
       operationId: https://infer.visai.ai/v1/inference-servers
       parameters:
         - name: x-api-key
@@ -199,10 +205,16 @@ paths:
                                     end_time:
                                       type: string
                                       description: End time(sec) offset of word // optional
+        "204":
+          description: No content | No result of transcription
+        "400":
+          description: No audio file | Not found audio file *or* Bad requests | Server cannot or will not process the request
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
         "404":
           description: Not found | Incorrect endpoint
+        "415":
+          description: Can't decode [filename] | Unsupported file format
       requestBody:
         content:
           multipart/form-data:

@@ -11,7 +11,7 @@ info:
     # Base Model - Product Review
     > **Provider: VISAI.ai**
 
-    The model is trained from the online shopping product review dataset, where we focus mostly on product reviews on multiple categories including female fashion, male fashion, cosmetic, electronic devices & gadgets, etc. This model is specifically trained to predict sentiments based on a specific domain while putting emphasis on customer's product review sentences. Therefore, the model performance could be worsened if the prompt data is in a different domain. For example, in domains such as social media comment, healthcare, legal, or other data that its domain is not product review based, it is expec^Cd that a model performance would be bad.
+    The model is trained from the online shopping product review dataset, where we focus mostly on product reviews on multiple categories including female fashion, male fashion, cosmetic, electronic devices & gadgets, etc. This model is specifically trained to predict sentiments based on a specific domain while putting emphasis on customer's product review sentences. Therefore, the model performance could be worsened if the prompt data is in a different domain. For example, in domains such as social media comment, healthcare, legal, or other data that its domain is not product review based, it is expected that a model performance would be bad.
 
     # Authentication
     Sentiment Analysis requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
@@ -33,7 +33,7 @@ paths:
     post:
       tags:
         - base-model
-      summary: Sentiment anlaysis base-model
+      summary: Sentiment Analysis Base-model
       description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
       operationId: https://infer.visai.ai/v1/inference-servers
       responses:
@@ -69,8 +69,10 @@ paths:
                       Positive: 0.7945334467741602
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
+        "400":
+          description: Input not founds | Incorrect request body field (inputs)
         "401":
-          description: Unauthorized | incorrect x-api-key or x-api-key not have access to this model
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
       parameters:
         - schema:
             type: string
@@ -99,7 +101,7 @@ paths:
     post:
       tags:
         - your-model
-      summary: Sentiment anlaysis your-model
+      summary: Sentiment Analysis Your-model
       description: Categorizes opinions from pieces of text to determine a sentiment score (positive, negative, or neutral)
       operationId: https://infer.visai.ai/v1/inference-servers
       parameters:
@@ -147,10 +149,12 @@ paths:
                       Positive: 0.7945334467741602
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
+        "400":
+          description: Input not founds | Incorrect request body field (inputs)
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
         "404":
-          description: Not found | Incorrect endpoint
+          description: Page not found | Incorrect endpoint
       requestBody:
         content:
           application/json:
