@@ -7,7 +7,7 @@ const FeatureList = [
   {
     title: "Sentiment Analysis",
     src: require("../../static/img/sentiment_analysis_logo.webp").default,
-    href: "/inference-api/introduction-1",
+    href: "/inference-api/introduction",
     description: (
       <>Text contextual extraction to determine people's feelings.</>
     ),
@@ -15,13 +15,13 @@ const FeatureList = [
   {
     title: "Speech to Text",
     src: require("../../static/img/asr_logo.webp").default,
-    href: "/inference-api/introduction-2",
+    href: "/inference-api/introduction-1",
     description: <>Transcribing speech into text using deep neural networks.</>,
   },
   {
     title: "Word Tokenization",
     src: require("../../static/img/word-tokenization_logo.webp").default,
-    href: "/inference-api/introduction-3",
+    href: "/inference-api/introduction-2",
     description: <>Splitting sentences of text into words.</>,
   },
 ];
