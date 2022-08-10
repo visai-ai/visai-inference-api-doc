@@ -70,7 +70,7 @@ paths:
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
         "400":
-          description: Input not founds | Incorrect request body field (inputs)
+          description: inputs not founds | Incorrect request body field (inputs)
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
       parameters:
@@ -150,7 +150,7 @@ paths:
                       Neutral: 0.1721096410630493
                       Negative: 0.0333569121627906
         "400":
-          description: Input not founds | Incorrect request body field (inputs)
+          description: inputs not founds | Incorrect request body field (inputs)
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
         "404":

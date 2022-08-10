@@ -212,7 +212,7 @@ paths:
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
         "404":
-          description: Not found | Incorrect endpoint
+          description: Page not found | Incorrect endpoint
         "415":
           description: Can't decode [filename] | Unsupported file format
       requestBody:

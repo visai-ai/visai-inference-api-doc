@@ -66,7 +66,7 @@ paths:
                         - " "
                         - "2022"
         "400":
-          description: Input not founds | Incorrect request body field (inputs)
+          description: inputs not founds | Incorrect request body field (inputs)
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
       description: Split a large sample of text into tokens
@@ -139,11 +139,11 @@ paths:
                         - " "
                         - "2022"
         "400":
-          description: Input not founds | Incorrect request body field (inputs)
+          description: inputs not founds | Incorrect request body field (inputs)
         "401":
           description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
         "404":
-          description: Not found | Incorrect endpoint
+          description: Page not found | Incorrect endpoint
       description: Split a large sample of text into tokens
       requestBody:
         content:
