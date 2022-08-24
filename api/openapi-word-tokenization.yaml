@@ -18,7 +18,7 @@ info:
     3. VISTEC-TP-TH-2021 corpus is available at [OSKut/VISTEC-TP-TH-2021](https://github.com/mrpeerat/OSKut/tree/main/VISTEC-TP-TH-2021)
 
     # Authentication
-    Word Tokenization requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+    Word Tokenization requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
 tags:
   - name: base-model
@@ -37,7 +37,7 @@ paths:
     post:
       tags:
         - base-model
-      summary: Word tokenization base-model
+      summary: Word Tokenization Base-model
       operationId: https://infer.visai.ai/v1/inference-servers
       responses:
         "200":
@@ -77,6 +77,12 @@ paths:
           name: x-api-key
           required: true
           description: Your API Key
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
       requestBody:
         content:
           application/json:
@@ -85,7 +91,7 @@ paths:
               properties:
                 inputs:
                   type: array
-                  description: List of sentence
+                  description: List of sentences
                   items:
                     type: string
               example:
@@ -98,7 +104,7 @@ paths:
     post:
       tags:
         - your-model
-      summary: Word tokenization your-model
+      summary: Word Tokenization Your-model
       operationId: https://infer.visai.ai/v1/inference-servers
       parameters:
         - name: x-api-key
@@ -106,6 +112,12 @@ paths:
           required: true
           schema:
             type: string
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
         - name: endpoint
           in: path
           description: Your model endpoint
@@ -153,7 +165,7 @@ paths:
               properties:
                 inputs:
                   type: array
-                  description: List of sentence
+                  description: List of sentences
                   items:
                     type: string
               example:

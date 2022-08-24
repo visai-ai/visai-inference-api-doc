@@ -97,6 +97,14 @@ const config = {
             label: "API",
             items: [
               {
+                to: "/inference-api/machine-translation-base-model",
+                label: "Machine Translation",
+              },
+              {
+                to: "/inference-api/ocr-general-document-base-model",
+                label: "OCR General Document",
+              },
+              {
                 to: "/inference-api/sentiment-analysis-base-model",
                 label: "Sentiment Anlaysis",
               },

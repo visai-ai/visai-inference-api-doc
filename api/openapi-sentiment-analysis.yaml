@@ -14,7 +14,7 @@ info:
     The model is trained from the online shopping product review dataset, where we focus mostly on product reviews on multiple categories including female fashion, male fashion, cosmetic, electronic devices & gadgets, etc. This model is specifically trained to predict sentiments based on a specific domain while putting emphasis on customer's product review sentences. Therefore, the model performance could be worsened if the prompt data is in a different domain. For example, in domains such as social media comment, healthcare, legal, or other data that its domain is not product review based, it is expected that a model performance would be bad.
 
     # Authentication
-    Sentiment Analysis requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+    Sentiment Analysis requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
 tags:
   - name: base-model
@@ -80,6 +80,12 @@ paths:
           required: true
           name: x-api-key
           description: Your API key
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
       requestBody:
         content:
           application/json:
@@ -110,6 +116,12 @@ paths:
           required: true
           schema:
             type: string
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
         - name: endpoint
           in: path
           description: Your model endpoint

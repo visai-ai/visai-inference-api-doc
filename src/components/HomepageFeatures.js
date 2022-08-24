@@ -5,9 +5,25 @@ import Link from "@docusaurus/Link";
 
 const FeatureList = [
   {
+    title: "Machine Translation",
+    src: require("../../static/img/translation_logo.webp").default,
+    href: "/inference-api/introduction",
+    description: <>Translate from one language to another.</>,
+  },
+  {
+    title: "OCR General Document",
+    src: require("../../static/img/ocr_logo.webp").default,
+    href: "/inference-api/introduction-1",
+    description: (
+      <>
+        Extracting textual information from image into a machine-readable text.
+      </>
+    ),
+  },
+  {
     title: "Sentiment Analysis",
     src: require("../../static/img/sentiment_analysis_logo.webp").default,
-    href: "/inference-api/introduction",
+    href: "/inference-api/introduction-2",
     description: (
       <>Text contextual extraction to determine people's feelings.</>
     ),
@@ -15,13 +31,13 @@ const FeatureList = [
   {
     title: "Speech to Text",
     src: require("../../static/img/asr_logo.webp").default,
-    href: "/inference-api/introduction-1",
+    href: "/inference-api/introduction-3",
     description: <>Transcribing speech into text using deep neural networks.</>,
   },
   {
     title: "Word Tokenization",
     src: require("../../static/img/word-tokenization_logo.webp").default,
-    href: "/inference-api/introduction-2",
+    href: "/inference-api/introduction-4",
     description: <>Splitting sentences of text into words.</>,
   },
 ];

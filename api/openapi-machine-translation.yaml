@@ -1,0 +1,171 @@
+openapi: 3.0.3
+servers:
+  - url: https://infer.visai.ai/v1/inference-servers
+    description: Default server
+info:
+  title: Machine Translation
+  version: 1.0.0
+  description: |
+    **Machine Translation** Machine translation (MT) is a model that translates from one language to another with supervised learning. MT models can automatically learn to translate from sentence pairs at scale. Currently, our model can only translate from Thai to English and English to Thai but has potential to be adapted for other languages.
+
+    # Base Model - VISAI TH-EN MT
+    > **Provider: VISAI.ai**
+
+    Our Neural Machine Translation model is trained with the datasets with around 10M paired sentences (Thai and English). The dataset’s domains include Wikipedia, various kinds of documents such as religious and web documents, SMS messages, product reviews, subtitles, and many more. Even though our model can produce translations effectively, the input length that the model can process is limited to 512 tokens/words. The performance of our machine translation model was evaluated using the test set, a collection of 55,555 text samples from TedTalk, annotated by Thai linguists.
+
+    # Authentication
+    Machine Translation requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
+      - x-api-key
+tags:
+  - name: base-model
+    description: Base model inference API
+    x-displayName: Base Model API
+  - name: your-model
+    description: Your model inference API
+    x-displayName: Your Model API
+x-tagGroups:
+  - name: General
+    tags:
+      - base-model
+      - your-model
+paths:
+  /base/infer-mt:
+    post:
+      tags:
+        - base-model
+      summary: Machine Translation Base-model
+      operationId: https://infer.visai.ai/v1/inference-servers
+      responses:
+        "200":
+          description: Return translation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  translation:
+                    type: array
+                    description: List of translation results in target langauge
+                    items:
+                      type: string
+        "400":
+          description: inputs not founds | Incorrect request body field (inputs)
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+      description: Translate from one language to another
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          description: Your API key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
+        - schema:
+            type: string
+          in: query
+          name: sl
+          description: Start language (th, en)
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: tl
+          description: Target language (th, en)
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentences in start language
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - ผลการรายงานพบว่า ฉลามวาฬมีอายุยืนมาก
+                  - ฉลองครบรอบปีที่ 29 ปีความสัมพันธ์ระหว่างไทย-ลิทัวเนีย
+        required: true
+    parameters: []
+  "/your/{endpoint}":
+    post:
+      tags:
+        - your-model
+      summary: Machine Translation Your-model
+      operationId: https://infer.visai.ai/v1/inference-servers
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          description: Your API key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: application/json
+        - schema:
+            type: string
+          in: query
+          name: sl
+          description: Start language (th, en)
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: tl
+          description: Target language (th, en)
+          required: true
+        - name: endpoint
+          in: path
+          description: Your model endpoint
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Return translation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  translation:
+                    type: array
+                    description: List of translation results in target langauge
+                    items:
+                      type: string
+        "400":
+          description: inputs not founds | Incorrect request body field (inputs)
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+        "404":
+          description: Page not found | Incorrect endpoint
+      description: Translate from one language to another
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentences in start language
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - ผลการรายงานพบว่า ฉลามวาฬมีอายุยืนมาก
+                  - ฉลองครบรอบปีที่ 29 ปีความสัมพันธ์ระหว่างไทย-ลิทัวเนีย
+        required: true
+    parameters: []

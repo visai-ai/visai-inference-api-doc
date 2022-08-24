@@ -14,7 +14,7 @@ info:
     We utilized a model from our partner, [Gowajee](https://www.gowajee.ai/). The model is trained by using over 1,000 hours of annotated data collected online by our partner from various sources. This model can perform in general topics but specializes in call center. The model could be worsened if audio contains code switching, low-quality speech, and overlapping speech data. The model's performance was evaluated on around 60 hours of speech data, which was collected from the same source as the training data.
 
     # Authentication
-    Speech to Text requires API key for API request. Go to [API Key Management](https://web-dev.visai.ai/api-key-management) to create and get your API Key.
+    Speech to Text requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
       - x-api-key
 tags:
   - name: base-model
@@ -29,7 +29,7 @@ x-tagGroups:
       - base-model
       - your-model
 paths:
-  /base/infer-8ea77bf0:
+  /base/infer-asr:
     post:
       tags:
         - base-model
@@ -108,24 +108,18 @@ paths:
                   description: Audio speech file
                 word_timestamps:
                   type: string
-                  description: true or false (default 'false')
+                  description: (optional) true or false // default 'false'
                 speaking_rate:
                   type: string
-                  description: true or false (default 'false')
+                  description: (optional) true or false // default 'false'
                 decoder_type:
                   type: string
-                  description: Greedy, BeamSearch, or LMBeamSearch (default 'LMBeamSearch')
+                  description: (optional) Greedy, BeamSearch, or LMBeamSearch // default 'LMBeamSearch'
                 word_list:
                   type: string
-                  description: List of terminology ex. ['word', 'word', ...]
+                  description: (optional) List of terminology ex. ['word', 'word', ...]
               required:
                 - files
-      # requestBody:
-      #   content:
-      #     application/octet-stream:
-      #       schema:
-      #         type: string
-      #         format: binary
       parameters:
         - schema:
             type: string
@@ -133,6 +127,12 @@ paths:
           name: x-api-key
           description: Your API key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: multipart/form-data
     parameters: []
   "/your/{endpoint}":
     post:
@@ -147,6 +147,12 @@ paths:
           required: true
           schema:
             type: string
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: multipart/form-data
         - name: endpoint
           in: path
           description: Your model endpoint
@@ -227,22 +233,16 @@ paths:
                   description: Audio speech file
                 word_timestamps:
                   type: string
-                  description: true or false (default 'false')
+                  description: (optional) true or false // default 'false'
                 speaking_rate:
                   type: string
-                  description: true or false (default 'false')
+                  description: (optional) true or false // default 'false'
                 decoder_type:
                   type: string
-                  description: Greedy, BeamSearch, or LMBeamSearch (default 'LMBeamSearch')
+                  description: (optional) Greedy, BeamSearch, or LMBeamSearch // default 'LMBeamSearch'
                 word_list:
                   type: string
-                  description: List of terminology ex. ['word', 'word', ...]
+                  description: (optional) List of terminology ex. ['word', 'word', ...]
               required:
                 - files
-      # requestBody:
-      #   content:
-      #     application/octet-stream:
-      #       schema:
-      #         type: string
-      #         format: binary
     parameters: []
