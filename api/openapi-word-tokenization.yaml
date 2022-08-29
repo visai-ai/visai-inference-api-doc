@@ -24,14 +24,10 @@ tags:
   - name: base-model
     description: Base model inference API
     x-displayName: Base Model API
-  - name: your-model
-    description: Your model inference API
-    x-displayName: Your Model API
 x-tagGroups:
   - name: General
     tags:
       - base-model
-      - your-model
 paths:
   /base/infer-3fff061a:
     post:
@@ -83,80 +79,6 @@ paths:
           name: Content-Type
           required: true
           description: application/json
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                inputs:
-                  type: array
-                  description: List of sentences
-                  items:
-                    type: string
-              example:
-                inputs:
-                  - วิสัยบริษัทผู้พัฒนาแพลตฟอร์ม
-                  - ก่อตั้งเมื่อกุมภาพันธ์ 2022
-        required: true
-    parameters: []
-  "/your/{endpoint}":
-    post:
-      tags:
-        - your-model
-      summary: Word Tokenization Your-model
-      operationId: https://infer.visai.ai/v1/inference-servers
-      parameters:
-        - name: x-api-key
-          in: header
-          required: true
-          schema:
-            type: string
-        - schema:
-            type: string
-          in: header
-          name: Content-Type
-          required: true
-          description: application/json
-        - name: endpoint
-          in: path
-          description: Your model endpoint
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  tokens:
-                    type: array
-                    description: List of smaller units (tokens)
-                    items:
-                      type: string
-              examples:
-                example-1:
-                  value:
-                    tokens:
-                      - - วิสัย
-                        - บริษัท
-                        - ผู้พัฒนา
-                        - แพลตฟอร์ม
-                      - - ก่อตั้ง
-                        - เมื่อ
-                        - กุมภาพันธ์
-                        - " "
-                        - "2022"
-        "400":
-          description: inputs not founds | Incorrect request body field (inputs)
-        "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
-        "404":
-          description: Page not found | Incorrect endpoint
-      description: Split a large sample of text into tokens
       requestBody:
         content:
           application/json:
