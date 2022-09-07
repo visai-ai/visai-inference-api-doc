@@ -10,6 +10,31 @@
   overflow: hidden;
 }
 
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.title {
+  margin-top: 1.5rem;
+}
+
+html[data-theme="dark"] .featuresLink {
+  color: #ffffff !important;
+}
+
+
+html[data-theme="light"] .featuresLink {
+  color: #172642 !important;
+}
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
@@ -21,3 +46,4 @@
   align-items: center;
   justify-content: center;
 }
+
