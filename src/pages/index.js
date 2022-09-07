@@ -34,14 +34,14 @@ export default function Home() {
       <Head>
         <meta
           property="og:image"
-          content="https://visai-ai.github.io/visai-inference-api-doc/assets/images/visai_logo_bg-187adad4c0115713b82b9d5b5bec16dc.png"
+          content="https://visai-ai.github.io/visai-inference-api-doc/img/visai_logo_bg.png"
         />
         <meta property="og:description" content={siteConfig.tagline} />
         <meta property="twitter:title" content={siteConfig.title} />
         <meta name="twitter:card" content="summary" />
         <meta
           property="og:image"
-          content="https://visai-ai.github.io/visai-inference-api-doc/assets/images/visai_logo_bg-187adad4c0115713b82b9d5b5bec16dc.png"
+          content="https://visai-ai.github.io/visai-inference-api-doc/img/visai_logo_bg.png"
         />
       </Head>
       <HomepageHeader />

@@ -146,6 +146,13 @@ const config = {
         },
         copyright: `Copyright © ${new Date().getFullYear()} VISAI. All rights reserved.`,
       },
+      metadata: [
+        {
+          property: "og:image",
+          content:
+            "https://visai-ai.github.io/visai-inference-api-doc/img/visai_logo_bg.png",
+        },
+      ],
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
