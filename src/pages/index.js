@@ -32,6 +32,7 @@ export default function Home() {
   return (
     <Layout title={siteConfig.title} description="VISAI API Documentation">
       <Head>
+        <title>VISAI Inference API Documentation</title>
         <meta
           property="og:image"
           content="https://visai-ai.github.io/visai-inference-api-doc/img/visai_logo_bg.png"
