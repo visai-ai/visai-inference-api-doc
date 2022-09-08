@@ -1,0 +1,102 @@
+openapi: 3.0.3
+servers:
+  - url: https://infer.visai.ai/v1/inference-servers/
+    description: Default server
+info:
+  title: Speech Segmentation
+  version: 1.0.0
+  description: |
+    Speech Segmentation, also known as Voice activity detection (VAD), is the detection of the human speech or non-speech. The speech segmentation is widely used to facilitate in speech processing such as Automatic Speech Recognition (ASR), and Speech Emotion Recognition (SER).
+
+    # Base Model - VISAI Speech Segmentaion
+
+    We used a model from NeMo¹ and fine-tune to support Thai language. The model was trained with a speech dataset from Thai SER², and background datasets from MUSAN³ and ChMusic⁴. The evaluation set was split from the same source as training data and rebalanced to have the same number of segments in each of the classes. If background noise is very loud, the model will fail to detect some words.
+
+    # Authentication
+    Speech Segmentation requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
+      - x-api-key
+tags:
+  - name: base-model
+    description: Base model inference API
+    x-displayName: Base Model API
+x-tagGroups:
+  - name: General
+    tags:
+      - base-model
+paths:
+  /base/infer-speech-segment:
+    post:
+      tags:
+        - base-model
+      summary: Speech Segmentation Base-model
+      description: The process of identifying the boundaries between the human speech or non-speech.
+      operationId: https://infer.visai.ai/v1/inference-servers
+      responses:
+        "200":
+          description: Return list of time intervals between the human speech or non-speech.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Status of speech segmentaion
+                  data:
+                    type: array
+                    description: Result data of speech segmentaion
+                    items:
+                      type: object
+                      properties:
+                        filename:
+                          type: string
+                          description: Name of audio file
+                        interval:
+                          type: array
+                          description: Interval time
+                          items:
+                            type: object
+                            properties:
+                              start:
+                                type: string
+                                description: Start time of the boundary
+                              end:
+                                type: string
+                                description: End time of the boundary
+                              label:
+                                type: string
+                                description: Speech or non-speech in the boundary
+        "204":
+          description: No content | No result of transcription
+        "400":
+          description: No audio file | Not found audio file *or* Bad requests | Server cannot or will not process the request
+        "401":
+          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+        "415":
+          description: Can't decode [filename] | Unsupported file format
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: string
+                  format: binary
+                  description: Audio speech file
+              required:
+                - files
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-api-key
+          description: Your API key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
+          description: multipart/form-data
+    parameters: []

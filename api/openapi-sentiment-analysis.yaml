@@ -6,7 +6,7 @@ info:
   title: Sentiment Analysis
   version: 1.0.2
   description: |
-    **Sentiment analysis** is a text classification model that analyses the given sentence and determines its underlying sentiment—Positive, Neutral, and Negative. This method is often used in business to gauge opinions of individuals or groups. This model can be integrated with several use cases, most of which focus on customer experience management, social monitoring, customer feedback, and voice of the customer or employee.
+    Sentiment analysis is a text classification model that analyses the given sentence and determines its underlying sentiment—Positive, Neutral, and Negative. This method is often used in business to gauge opinions of individuals or groups. This model can be integrated with several use cases, most of which focus on customer experience management, social monitoring, customer feedback, and voice of the customer or employee.
 
     # Base Model - Product Review
     > **Provider: VISAI.ai**

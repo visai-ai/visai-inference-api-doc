@@ -6,7 +6,7 @@ info:
   title: OCR General Document
   version: 1.0.0
   description: |
-    **Optical Image Recognition (OCR)** or **image-to-text** is a process of extracting textual information from image file formats (PDF, PNG, JPEG, etc.) that cannot be edited, searched, or counted into a machine-readable text format. This makes it easier and more accurate for a computer to perform some tasks on text. For example, an OCR and information retrieval can be used in document search from PDF files.
+    Optical Image Recognition (OCR) or Image to Text is a process of extracting textual information from image file formats (PDF, PNG, JPEG, etc.) that cannot be edited, searched, or counted into a machine-readable text format. This makes it easier and more accurate for a computer to perform some tasks on text. For example, an OCR and information retrieval can be used in document search from PDF files.
 
     # Base Model - VISAI OCR General Document (TH-EN)
     > **Provider: VISAI.ai**

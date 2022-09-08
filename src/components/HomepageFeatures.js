@@ -30,15 +30,26 @@ const FeatureList = [
     ),
   },
   {
+    title: "Speech Segmentation",
+    src: require("/img/speech_segmentaion_logo.webp").default,
+    href: "/inference-api/introduction-3",
+    description: (
+      <>
+        The process of identifying the boundaries between the human speech or
+        non-speech.
+      </>
+    ),
+  },
+  {
     title: "Speech to Text",
     src: require("/img/asr_logo.webp").default,
-    href: "/inference-api/introduction-3",
+    href: "/inference-api/introduction-4",
     description: <>Transcribing speech into text using deep neural networks.</>,
   },
   {
     title: "Word Tokenization",
     src: require("/img/word-tokenization_logo.webp").default,
-    href: "/inference-api/introduction-4",
+    href: "/inference-api/introduction-5",
     description: <>Splitting sentences of text into words.</>,
   },
 ];

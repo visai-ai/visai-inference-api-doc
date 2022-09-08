@@ -109,6 +109,10 @@ const config = {
                 label: "Sentiment Anlaysis",
               },
               {
+                to: "/inference-api/speech-segmentation-base-model",
+                label: "Speech Segmentation",
+              },
+              {
                 to: "/inference-api/speech-to-text-base-model",
                 label: "Speech to Text",
               },

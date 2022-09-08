@@ -6,7 +6,7 @@ info:
   title: Word Tokenization
   version: 1.0.0
   description: |
-    **Word tokenization** is a process of defining boundaries between words in a sentence. Tokenization is a method of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character. In this model, a token refers to a word. Word tokenization is essential to many Natural Language Processing (NLP) pipelines such as text search, keyword extraction, etc. It is also crucial to doing NLP in Thai language which does not have word boundary in a sentence (no spaces between words).
+    Word tokenization is a process of defining boundaries between words in a sentence. Tokenization is a method of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character. In this model, a token refers to a word. Word tokenization is essential to many Natural Language Processing (NLP) pipelines such as text search, keyword extraction, etc. It is also crucial to doing NLP in Thai language which does not have word boundary in a sentence (no spaces between words).
 
     # Base Model - Dictionary based
     > **Provider: PyThaiNLP**

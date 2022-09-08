@@ -6,9 +6,9 @@ info:
   title: Speech to Text
   version: 1.0.0
   description: |
-    **Speech segmentation**, also known as Voice activity detection (VAD), is the detection of the human speech or non-speech. The speech segmentation is widely used to facilitate in speech processing such as Automatic Speech Recognition (ASR), and Speech Emotion Recognition (SER).
+    Speech to Text or Automatic Speech Recognition (ASR) is one of the machine learning tasks that aim to predict the corresponding transcription from a given audio input. ASR can be beneficial for several use cases, such as online course transcription, movie subtitle, call center transcription, and so forth.
 
-    # Base Model - VISAI Speech Segmentaion
+    # Base Model - Thai Speech to Text
     > **Provider: Gowajee**
 
     We utilized a model from our partner, [Gowajee](https://www.gowajee.ai/). The model is trained by using over 1,000 hours of annotated data collected online by our partner from various sources. This model can perform in general topics but specializes in call center. The model could be worsened if audio contains code switching, low-quality speech, and overlapping speech data. The model's performance was evaluated on around 60 hours of speech data, which was collected from the same source as the training data.
@@ -40,50 +40,57 @@ paths:
               schema:
                 type: object
                 properties:
-                  results:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        filename:
-                          type: string
-                          description: Name of audio file
-                        duration:
-                          type: string
-                          description: Total time(sec) of audio file
-                        predictions:
-                          type: array
-                          description: List of outputs corresponds to speech detected in audio file
-                          items:
-                            type: object
-                            properties:
-                              transcript:
-                                type: string
-                                description: Transcribed text
-                              start_time:
-                                type: string
-                                description: Start time(sec) of transcribed text
-                              end_time:
-                                type: string
-                                description: End time(sec) of transcribed text
-                              speaking_rate:
-                                type: string
-                                description: Speaking rate of each transcription // optional
-                              word_timestamps:
-                                type: array
-                                description: List of time offsets of each word // optional
-                                items:
-                                  type: object
-                                  properties:
-                                    word:
-                                      type: string
-                                      description: Transcribed word // optional
-                                    start_time:
-                                      type: string
-                                      description: Start time(sec) offset of word // optional
-                                    end_time:
-                                      type: string
-                                      description: End time(sec) offset of word // optional
+                  status:
+                    type: string
+                    description: Status of transcription
+                  data:
+                    type: object
+                    description: Result data of transcription
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            filename:
+                              type: string
+                              description: Name of audio file
+                            duration:
+                              type: string
+                              description: Total time(sec) of audio file
+                            predictions:
+                              type: array
+                              description: List of outputs corresponds to speech detected in audio file
+                              items:
+                                type: object
+                                properties:
+                                  transcript:
+                                    type: string
+                                    description: Transcribed text
+                                  start_time:
+                                    type: string
+                                    description: Start time(sec) of transcribed text
+                                  end_time:
+                                    type: string
+                                    description: End time(sec) of transcribed text
+                                  speaking_rate:
+                                    type: string
+                                    description: Speaking rate of each transcription // optional
+                                  word_timestamps:
+                                    type: array
+                                    description: List of time offsets of each word // optional
+                                    items:
+                                      type: object
+                                      properties:
+                                        word:
+                                          type: string
+                                          description: Transcribed word // optional
+                                        start_time:
+                                          type: string
+                                          description: Start time(sec) offset of word // optional
+                                        end_time:
+                                          type: string
+                                          description: End time(sec) offset of word // optional
         "204":
           description: No content | No result of transcription
         "400":

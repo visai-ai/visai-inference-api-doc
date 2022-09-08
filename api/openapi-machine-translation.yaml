@@ -6,7 +6,7 @@ info:
   title: Machine Translation
   version: 1.0.0
   description: |
-    **Machine Translation** Machine translation (MT) is a model that translates from one language to another with supervised learning. MT models can automatically learn to translate from sentence pairs at scale. Currently, our model can only translate from Thai to English and English to Thai but has potential to be adapted for other languages.
+    Machine Translation Machine translation (MT) is a model that translates from one language to another with supervised learning. MT models can automatically learn to translate from sentence pairs at scale. Currently, our model can only translate from Thai to English and English to Thai but has potential to be adapted for other languages.
 
     # Base Model - VISAI TH-EN MT
     > **Provider: VISAI.ai**
