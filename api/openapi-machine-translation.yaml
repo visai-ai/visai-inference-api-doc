@@ -56,12 +56,12 @@ paths:
           name: x-api-key
           description: Your API key
           required: true
-        - schema:
-            type: string
-          in: header
-          name: Content-Type
-          required: true
-          description: application/json
+        # - schema:
+        #     type: string
+        #   in: header
+        #   name: Content-Type
+        #   required: true
+        #   description: application/json
         - schema:
             type: string
           in: query

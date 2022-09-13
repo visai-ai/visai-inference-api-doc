@@ -1,5 +1,5 @@
 diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
-index 012fbbe..d7f81ac 100644
+index 012fbbe..566ff8b 100644
 --- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
 +++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/Execute/makeRequest.js
 @@ -23,7 +23,6 @@ async function loadImage(content) {
@@ -32,43 +32,39 @@ index 012fbbe..d7f81ac 100644
            myBody = await loadImage(_body.content.value.content);
          }
  
-@@ -167,11 +172,11 @@ async function makeRequest(request, proxy, _body) {
-   };
-   let finalUrl = request.url.toString();
- 
--  if (proxy) {
--    // Ensure the proxy ends with a slash.
--    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
--    finalUrl = normalizedProxy + request.url.toString();
--  }
-+  // if (proxy) {
-+  //   // Ensure the proxy ends with a slash.
-+  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
-+  //   finalUrl = normalizedProxy + request.url.toString();
-+  // }
- 
-   return await fetch(finalUrl, requestOptions).then((response) => {
-     return response.text();
 diff --git a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
-index 3ba58b3..5d9adc6 100644
+index 3ba58b3..8efefa2 100644
 --- a/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
 +++ b/node_modules/docusaurus-theme-openapi/lib-next/theme/ApiDemoPanel/buildPostmanRequest.js
-@@ -79,10 +79,10 @@ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
+@@ -78,19 +78,16 @@ function buildCookie(cookieParams) {
+ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
    postman.headers.clear();
  
-   if (contentType) {
+-  if (contentType) {
 -    postman.addHeader({
 -      key: "Content-Type",
 -      value: contentType,
 -    });
-+    // postman.addHeader({
-+    //   key: "Content-Type",
-+    //   value: contentType,
-+    // });
++  if (contentType && contentType !== 'multipart/form-data') {
++    postman.addHeader({ key: "Content-Type", value: contentType });
    }
  
-   if (accept) {
-@@ -156,12 +156,9 @@ function setBody(clonedPostman, body) {
+-  if (accept) {
+-    postman.addHeader({
+-      key: "Accept",
+-      value: accept,
+-    });
+-  }
++  // if (accept) {
++  //   postman.addHeader({
++  //     key: "Accept",
++  //     value: accept,
++  //   });
++  // }
+ 
+   headerParams.forEach((param) => {
+     if (param.value && !Array.isArray(param.value)) {
+@@ -156,12 +153,9 @@ function setBody(clonedPostman, body) {
        const params = Object.entries(body.content)
          .filter((entry) => !!entry[1])
          .map(([key, content]) => {
@@ -98,7 +94,7 @@ index e2e9607..48849a4 100644
 +    })
    });
 diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
-index 5c7fa47..4bde407 100644
+index 5c7fa47..f44689f 100644
 --- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
 +++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/Execute/makeRequest.js
 @@ -30,7 +30,6 @@ async function loadImage(content) {
@@ -131,43 +127,39 @@ index 5c7fa47..4bde407 100644
              myBody = await loadImage(_body.content.value.content);
            }
  
-@@ -185,11 +190,11 @@ async function makeRequest(request, proxy, _body) {
-   };
-   let finalUrl = request.url.toString();
- 
--  if (proxy) {
--    // Ensure the proxy ends with a slash.
--    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
--    finalUrl = normalizedProxy + request.url.toString();
--  }
-+  // if (proxy) {
-+  //   // Ensure the proxy ends with a slash.
-+  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
-+  //   finalUrl = normalizedProxy + request.url.toString();
-+  // }
- 
-   return await fetch(finalUrl, requestOptions).then(response => {
-     return response.text();
 diff --git a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
-index f0dffa2..5c6380f 100644
+index f0dffa2..2dc2e84 100644
 --- a/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
 +++ b/node_modules/docusaurus-theme-openapi/lib/theme/ApiDemoPanel/buildPostmanRequest.js
-@@ -86,10 +86,10 @@ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
+@@ -85,19 +85,16 @@ function buildCookie(cookieParams) {
+ function setHeaders(postman, contentType, accept, cookie, headerParams, other) {
    postman.headers.clear();
  
-   if (contentType) {
+-  if (contentType) {
 -    postman.addHeader({
 -      key: "Content-Type",
 -      value: contentType
 -    });
-+    // postman.addHeader({
-+    //   key: "Content-Type",
-+    //   value: contentType
-+    // });
++  if (contentType && contentType !== 'multipart/form-data') {
++    postman.addHeader({ key: "Content-Type", value: contentType });
    }
  
-   if (accept) {
-@@ -172,12 +172,9 @@ function setBody(clonedPostman, body) {
+-  if (accept) {
+-    postman.addHeader({
+-      key: "Accept",
+-      value: accept
+-    });
+-  }
++  // if (accept) {
++  //   postman.addHeader({
++  //     key: "Accept",
++  //     value: accept
++  //   });
++  // }
+ 
+   headerParams.forEach(param => {
+     if (param.value && !Array.isArray(param.value)) {
+@@ -172,12 +169,9 @@ function setBody(clonedPostman, body) {
          }
  
          const params = Object.entries(body.content).filter(entry => !!entry[1]).map(([key, content]) => {
@@ -201,7 +193,7 @@ index b2dd68e..62a93c8 100644
  exports.createStoreWithState = createStoreWithState;
 \ No newline at end of file
 diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
-index d649242..332320d 100644
+index d649242..80968c1 100644
 --- a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
 +++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/Execute/makeRequest.ts
 @@ -144,7 +144,12 @@ async function makeRequest(
@@ -226,36 +218,27 @@ index d649242..332320d 100644
            myBody = await loadImage(_body.content.value.content);
          }
          break;
-@@ -168,11 +174,11 @@ async function makeRequest(
-   };
- 
-   let finalUrl = request.url.toString();
--  if (proxy) {
--    // Ensure the proxy ends with a slash.
--    let normalizedProxy = proxy.replace(/\/$/, "") + "/";
--    finalUrl = normalizedProxy + request.url.toString();
--  }
-+  // if (proxy) {
-+  //   // Ensure the proxy ends with a slash.
-+  //   let normalizedProxy = proxy.replace(/\/$/, "") + "/";
-+  //   finalUrl = normalizedProxy + request.url.toString();
-+  // }
- 
-   return await fetch(finalUrl, requestOptions).then((response) => {
-     return response.text();
 diff --git a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
-index c5fccbd..aa0ded1 100644
+index c5fccbd..1f1de87 100644
 --- a/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
 +++ b/node_modules/docusaurus-theme-openapi/src/theme/ApiDemoPanel/buildPostmanRequest.ts
-@@ -95,7 +95,7 @@ function setHeaders(
+@@ -94,12 +94,12 @@ function setHeaders(
+   other: { key: string; value: string }[]
  ) {
    postman.headers.clear();
-   if (contentType) {
--    postman.addHeader({ key: "Content-Type", value: contentType });
-+    // postman.addHeader({ key: "Content-Type", value: contentType });
+-  if (contentType) {
++  if (contentType && contentType !== 'multipart/form-data') {
+     postman.addHeader({ key: "Content-Type", value: contentType });
    }
-   if (accept) {
-     postman.addHeader({ key: "Accept", value: accept });
+-  if (accept) {
+-    postman.addHeader({ key: "Accept", value: accept });
+-  }
++  // if (accept) {
++  //   postman.addHeader({ key: "Accept", value: accept });
++  // }
+   headerParams.forEach((param) => {
+     if (param.value && !Array.isArray(param.value)) {
+       postman.addHeader({ key: param.name, value: param.value });
 @@ -154,9 +154,9 @@ function setBody(clonedPostman: sdk.Request, body: Body) {
        const params = Object.entries(body.content)
          .filter((entry): entry is [string, NonNullable<Content>] => !!entry[1])
