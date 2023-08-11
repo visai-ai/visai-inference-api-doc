@@ -1,0 +1,97 @@
+openapi: 3.0.3
+servers:
+  - url: https://textclass.infer.visai.ai/predict
+    description: Default server
+info:
+  title: Text Classification
+  version: 1.0.2
+  description: |
+    The model is trained from the dataset that was scraped from online shopping sites, where we focus mostly on product reviews on multiple categories including female fashion, male fashion, cosmetic, electronic devices & gadgets, etc. This model is specifically trained to predict whether the reviews are associated with the following 4 topics: product quality, product price, services, and freight.
+
+    # Base Model - Product Review
+    > **Provider: VISAI.ai**
+
+    For training the model, each categorical label is transformed into binary classification problem and subjected to our Customized AI: Text Classification, the models are pooled together to create one module that predicts each category. Note our model was exclusively trained with product review data from online shopping sites. Therefore, the model performance could be worsened for product reviews which have different characteristics from online shopping. For example, review from social media comment or food delivery services might use significantly different language from product review, it is expected that in such case, our model performance would be worsen.
+
+    # Authentication
+    Text Classification requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
+tags:
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
+paths:
+  /predict:
+    post:
+      tags:
+        - ai-marketplace
+      summary: Text Classification - Product Review
+      description: AI categorizes text content by classifying topics or identifying responsible staff mentioned in the text.
+      operationId: https://textclass.infer.visai.ai
+      responses:
+        "200":
+          description: Return the response of the text classification model API will be a list of JSON where each element is another key-value object that contains its sentence and its predicted probability of each class.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    description: Array of results
+                    items:
+                      type: object
+                      properties:
+                        input:
+                          type: string
+                          description: Input sentence
+                        prediction:
+                          type: array
+                          description: Array of results
+                          items:
+                            type: object
+                            properties:
+                              class_name:
+                                type: string
+                                description: Class name about product review (เกี่ยวกับการบริการ, เกี่ยวกับการขนส่ง, เกี่ยวกับราคา, เกี่ยวกับคุณภาพสินค้า)
+                              confidence:
+                                type: string
+                                description: Confidence value
+
+        "400":
+          description: inputs not founds | Incorrect request body field (inputs)
+        "401":
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: X-API-Key
+          description: Your API key
+        # - schema:
+        #     type: string
+        #   in: header
+        #   name: Content-Type
+        #   required: true
+        #   description: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: array
+                  description: List of sentences
+                  items:
+                    type: string
+              example:
+                inputs:
+                  - ราคาดีมีคุณภาพ
+        required: true
+    parameters: []

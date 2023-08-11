@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer.visai.ai/v1/inference-servers/
+  - url: https://ocrdoc.infer.visai.ai/predict
     description: Default server
 info:
   title: OCR General Document
@@ -14,24 +14,24 @@ info:
     The model is trained with a dataset which contains both a synthesized dataset and some official PDF documents scraped online. The synthesized dataset was generated to mimic the document format and to make the model more robust on different generation conditions. Additionally, several augmentation techniques were also applied to make the model more robust.
 
     # Authentication
-    OCR General Document requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
-      - x-api-key
+    OCR General Document requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
 tags:
-  - name: base-model
-    description: Base model inference API
-    x-displayName: Base Model API
-x-tagGroups:
-  - name: General
-    tags:
-      - base-model
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
 paths:
-  /base/infer-ocr:
+  /predict:
     post:
       tags:
-        - base-model
-      summary: OCR General Document Base-model
-      description: Extracting textual information from image into a machine-readable text.
-      operationId: https://infer.visai.ai/v1/inference-servers
+        - ai-marketplace
+      summary: OCR General Document AI Marketplace
+      description: AI can read images of documents such as PDF, PNG, and JPG and convert them into text.
+      operationId: https://ocrdoc.infer.visai.ai
       responses:
         "200":
           description: Return list of transcribed text from image or document file
@@ -61,7 +61,7 @@ paths:
         "400":
           description: No file | Not found document or image file *or* Bad requests | Server cannot or will not process the request
         "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
         "415":
           description: Can't decode [filename] | Unsupported file format
       requestBody:
@@ -80,7 +80,7 @@ paths:
         - schema:
             type: string
           in: header
-          name: x-api-key
+          name: X-API-Key
           description: Your API key
           required: true
         # - schema:

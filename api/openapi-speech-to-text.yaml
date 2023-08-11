@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer.visai.ai/v1/inference-servers/
+  - url: https://stt.infer.visai.ai/predict
     description: Default server
 info:
   title: Speech to Text
@@ -11,27 +11,27 @@ info:
     # Base Model - Thai Speech to Text
     > **Provider: Gowajee**
 
-    We utilized a model from our partner, [Gowajee](https://www.gowajee.ai/). The model is trained by using over 1,000 hours of annotated data collected online by our partner from various sources. This model can perform in general topics but specializes in call center. The model could be worsened if audio contains code switching, low-quality speech, and overlapping speech data. The model's performance was evaluated on around 60 hours of speech data, which was collected from the same source as the training data.
+    We utilized a model from our partner, [Gowajee](https://www.gowajee.ai/). The model is trained by using over 1,000 hours of annotated data collected online by our partner from various sources. This model can perform in general topics but specializes in call center. The model could be worsened if audio contains code switching, low-quality speech, and overlapping speech data. The model's performance in the term of transcribe speech was evaluated on around 60 hours of speech data, which was collected from the same source as the training data. For diarization, it was evaluated on artificial conversations created from audio pools containing around 50 speakers. Each speaker appears only once in a conversation, ensuring there is no overlap between speakers across conversations.
 
     # Authentication
-    Speech to Text requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
-      - x-api-key
+    Speech to Text requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
 tags:
-  - name: base-model
-    description: Base model inference API
-    x-displayName: Base Model API
-x-tagGroups:
-  - name: General
-    tags:
-      - base-model
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
 paths:
-  /base/infer-asr:
+  /predict:
     post:
       tags:
-        - base-model
-      summary: Speech to Text Base-model
-      description: Process human speech into readable text
-      operationId: https://infer.visai.ai/v1/inference-servers
+        - ai-marketplace
+      summary: Speech to Text AI Marketplace
+      description: AI can transcribe speech into text, supporting multiple file types such as mp3, wav, and flac.
+      operationId: https://stt.infer.visai.ai
       responses:
         "200":
           description: Return list of transcribed text that corresponds to speech detected in audio.
@@ -42,7 +42,7 @@ paths:
                 properties:
                   status:
                     type: string
-                    description: Status of transcription
+                    description: Status of transcription request
                   data:
                     type: object
                     description: Result data of transcription
@@ -67,12 +67,15 @@ paths:
                                   transcript:
                                     type: string
                                     description: Transcribed text
-                                  start_time:
+                                  start:
                                     type: string
                                     description: Start time(sec) of transcribed text
-                                  end_time:
+                                  end:
                                     type: string
                                     description: End time(sec) of transcribed text
+                                  speaker_id:
+                                    type: number
+                                    description: Speaker ID // optional
                                   speaking_rate:
                                     type: string
                                     description: Speaking rate of each transcription // optional
@@ -96,7 +99,7 @@ paths:
         "400":
           description: No audio file | Not found audio file *or* Bad requests | Server cannot or will not process the request
         "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
         "415":
           description: Can't decode [filename] | Unsupported file format
       requestBody:
@@ -109,6 +112,9 @@ paths:
                   type: string
                   format: binary
                   description: Audio speech file
+                num_speakers:
+                  type: number
+                  description: (optional) Number of speakers diarization in 1-4 speakers
                 word_timestamps:
                   type: string
                   description: (optional) true or false // default 'false'
@@ -127,7 +133,7 @@ paths:
         - schema:
             type: string
           in: header
-          name: x-api-key
+          name: X-API-Key
           description: Your API key
           required: true
         # - schema:

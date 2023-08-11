@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer.visai.ai/v1/inference-servers/
+  - url: https://speechsegmentation.infer.visai.ai/demo/predict
     description: Default server
 info:
   title: Speech Segmentation
@@ -13,24 +13,24 @@ info:
     We used a model from NeMo¹ and fine-tune to support Thai language. The model was trained with a speech dataset from Thai SER², and background datasets from MUSAN³ and ChMusic⁴. The evaluation set was split from the same source as training data and rebalanced to have the same number of segments in each of the classes. If background noise is very loud, the model will fail to detect some words.
 
     # Authentication
-    Speech Segmentation requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
-      - x-api-key
+    Speech Segmentation requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
 tags:
-  - name: base-model
-    description: Base model inference API
-    x-displayName: Base Model API
-x-tagGroups:
-  - name: General
-    tags:
-      - base-model
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
 paths:
-  /base/infer-speech-segment:
+  /predict:
     post:
       tags:
-        - base-model
-      summary: Speech Segmentation Base-model
-      description: The process of identifying the boundaries between the human speech or non-speech.
-      operationId: https://infer.visai.ai/v1/inference-servers
+        - ai-marketplace
+      summary: Speech Segmentation AI Marketplace
+      description: AI can detect human speech from other sounds and is widely used in voice-activated apps.
+      operationId: https://speechsegmentation.infer.visai.ai
       responses:
         "200":
           description: Return list of time intervals between the human speech or non-speech.
@@ -41,7 +41,7 @@ paths:
                 properties:
                   status:
                     type: string
-                    description: Status of speech segmentaion
+                    description: Status of speech segmentaion request
                   data:
                     type: array
                     description: Result data of speech segmentaion
@@ -71,7 +71,7 @@ paths:
         "400":
           description: No audio file | Not found audio file *or* Bad requests | Server cannot or will not process the request
         "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
         "415":
           description: Can't decode [filename] | Unsupported file format
       requestBody:
@@ -90,7 +90,7 @@ paths:
         - schema:
             type: string
           in: header
-          name: x-api-key
+          name: X-API-Key
           description: Your API key
           required: true
         # - schema:

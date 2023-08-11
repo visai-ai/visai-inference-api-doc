@@ -8,49 +8,76 @@ const FeatureList = [
   {
     title: "Machine Translation",
     src: require("/img/translation_logo.webp").default,
-    href: "/inference-api/introduction",
-    description: <>Translate from one language to another.</>,
+    href: "/inference-api/machine-translation-ai-marketplace",
+    description: (
+      <>AI can translate between Thai-English and English-Thai on documents.</>
+    ),
   },
   {
     title: "OCR General Document",
     src: require("/img/ocr_logo.webp").default,
-    href: "/inference-api/introduction-1",
+    href: "/inference-api/ocr-general-document-ai-marketplace",
     description: (
       <>
-        Extracting textual information from image into a machine-readable text.
+        AI can read images of documents such as PDF, PNG, and JPG and convert
+        them into text.
       </>
     ),
   },
   {
     title: "Sentiment Analysis",
     src: require("/img/sentiment_analysis_logo.webp").default,
-    href: "/inference-api/introduction-2",
+    href: "/inference-api/sentiment-analysis-product-review",
     description: (
-      <>Text contextual extraction to determine people's feelings.</>
+      <>
+        AI can classify emotions from text into 3 categories: positive, neutral,
+        or negative.
+      </>
     ),
   },
   {
     title: "Speech Segmentation",
     src: require("/img/speech_segmentaion_logo.webp").default,
-    href: "/inference-api/introduction-3",
+    href: "/inference-api/speech-segmentation-ai-marketplace",
     description: (
       <>
-        The process of identifying the boundaries between the human speech or
-        non-speech.
+        AI can detect human speech from other sounds and is widely used in
+        voice-activated apps.
       </>
     ),
   },
   {
     title: "Speech to Text",
     src: require("/img/asr_logo.webp").default,
-    href: "/inference-api/introduction-4",
-    description: <>Transcribing speech into text using deep neural networks.</>,
+    href: "/inference-api/speech-to-text-ai-marketplace",
+    description: (
+      <>
+        AI can transcribe speech into text, supporting multiple file types such
+        as mp3, wav, and flac.
+      </>
+    ),
+  },
+  {
+    title: "Text Classification",
+    src: require("/img/text_classification_logo.webp").default,
+    href: "/inference-api/text-classification-product-review",
+    description: (
+      <>
+        AI categorizes text content by classifying topics or identifying
+        responsible staff mentioned in the text.
+      </>
+    ),
   },
   {
     title: "Word Tokenization",
     src: require("/img/word-tokenization_logo.webp").default,
-    href: "/inference-api/introduction-5",
-    description: <>Splitting sentences of text into words.</>,
+    href: "/inference-api/word-tokenization-ai-marketplace",
+    description: (
+      <>
+        AI can split sentences into words for use in text search, keyword
+        extraction, and data retrieval.
+      </>
+    ),
   },
 ];
 

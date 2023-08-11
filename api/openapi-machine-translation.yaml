@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer.visai.ai/v1/inference-servers
+  - url: https://mt.infer.visai.ai/predict
     description: Default server
 info:
   title: Machine Translation
@@ -14,23 +14,23 @@ info:
     Our Neural Machine Translation model is trained with the datasets with around 10M paired sentences (Thai and English). The dataset’s domains include Wikipedia, various kinds of documents such as religious and web documents, SMS messages, product reviews, subtitles, and many more. Even though our model can produce translations effectively, the input length that the model can process is limited to 512 tokens/words. The performance of our machine translation model was evaluated using the test set, a collection of 55,555 text samples from TedTalk, annotated by Thai linguists.
 
     # Authentication
-    Machine Translation requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
-      - x-api-key
+    Machine Translation requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
 tags:
-  - name: base-model
-    description: Base model inference API
-    x-displayName: Base Model API
-x-tagGroups:
-  - name: General
-    tags:
-      - base-model
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
 paths:
-  /base/infer-mt:
+  /predict:
     post:
       tags:
-        - base-model
-      summary: Machine Translation Base-model
-      operationId: https://infer.visai.ai/v1/inference-servers
+        - ai-marketplace
+      summary: Machine Translation AI Marketplace
+      operationId: https://mt.infer.visai.ai
       responses:
         "200":
           description: Return translation result
@@ -47,13 +47,13 @@ paths:
         "400":
           description: inputs not founds | Incorrect request body field (inputs)
         "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
-      description: Translate from one language to another
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
+      description: AI can translate between Thai-English and English-Thai on documents.
       parameters:
         - schema:
             type: string
           in: header
-          name: x-api-key
+          name: X-API-Key
           description: Your API key
           required: true
         # - schema:

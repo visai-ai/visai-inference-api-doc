@@ -97,27 +97,31 @@ const config = {
             label: "API",
             items: [
               {
-                to: "/inference-api/machine-translation-base-model",
+                to: "/inference-api/machine-translation-ai-marketplace",
                 label: "Machine Translation",
               },
               {
-                to: "/inference-api/ocr-general-document-base-model",
+                to: "/inference-api/ocr-general-document-ai-marketplace",
                 label: "OCR General Document",
               },
               {
-                to: "/inference-api/sentiment-analysis-base-model",
+                to: "/inference-api/inference-api/sentiment-analysis-product-review",
                 label: "Sentiment Anlaysis",
               },
               {
-                to: "/inference-api/speech-segmentation-base-model",
+                to: "/inference-api/speech-segmentation-ai-marketplace",
                 label: "Speech Segmentation",
               },
               {
-                to: "/inference-api/speech-to-text-base-model",
+                to: "/inference-api/speech-to-text-ai-marketplace",
                 label: "Speech to Text",
               },
               {
-                to: "/inference-api/word-tokenization-base-model",
+                to: "/inference-api/text-classification-product-review",
+                label: "Text Classification",
+              },
+              {
+                to: "/inference-api/word-tokenization-ai-marketplace",
                 label: "Word Tokenization",
               },
             ],

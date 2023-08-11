@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://infer.visai.ai/v1/inference-servers
+  - url: https://wordtokenization.infer.visai.ai/predict
     description: Default server
 info:
   title: Word Tokenization
@@ -18,23 +18,23 @@ info:
     3. VISTEC-TP-TH-2021 corpus is available at [OSKut/VISTEC-TP-TH-2021](https://github.com/mrpeerat/OSKut/tree/main/VISTEC-TP-TH-2021)
 
     # Authentication
-    Word Tokenization requires API key for API request. Go to [API Key Management](https://visai.ai/api-key-management) to create and get your API Key.
-      - x-api-key
+    Word Tokenization requires API key for API request. Go to [VISAI Console - API Key](https://console.visai.ai/api-key) to create and get your API Key.
+      - X-API-Key
 tags:
-  - name: base-model
-    description: Base model inference API
-    x-displayName: Base Model API
-x-tagGroups:
-  - name: General
-    tags:
-      - base-model
+  - name: ai-marketplace
+    description: AI marketplace inference API
+    x-displayName: AI Marketplace
+# x-tagGroups:
+#   - name: General
+#     tags:
+#       - base-model
 paths:
-  /base/infer-3fff061a:
+  /predict:
     post:
       tags:
-        - base-model
-      summary: Word Tokenization Base-model
-      operationId: https://infer.visai.ai/v1/inference-servers
+        - ai-marketplace
+      summary: Word Tokenization AI Marketplace
+      operationId: https://wordtokenization.infer.visai.ai
       responses:
         "200":
           description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character
@@ -64,13 +64,13 @@ paths:
         "400":
           description: inputs not founds | Incorrect request body field (inputs)
         "401":
-          description: Unauthorized | Incorrect x-api-key or x-api-key not have access to this model
-      description: Split a large sample of text into tokens
+          description: Unauthorized | Incorrect X-API-Key or X-API-Key not have access to this model
+      description: AI can split sentences into words for use in text search, keyword extraction, and data retrieval.
       parameters:
         - schema:
             type: string
           in: header
-          name: x-api-key
+          name: X-API-Key
           required: true
           description: Your API Key
         # - schema:
