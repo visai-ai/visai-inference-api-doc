@@ -105,8 +105,8 @@ const config = {
                 label: "OCR General Document",
               },
               {
-                to: "/inference-api/inference-api/sentiment-analysis-product-review",
-                label: "Sentiment Anlaysis",
+                to: "inference-api/sentiment-analysis-product-review",
+                label: "Sentiment Analysis",
               },
               {
                 to: "/inference-api/speech-segmentation-ai-marketplace",
