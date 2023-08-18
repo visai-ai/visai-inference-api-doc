@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://ocrdoc.infer.visai.ai/predict
+  - url: https://ocrdoc.infer.visai.ai
     description: Default server
 info:
   title: OCR General Document
@@ -31,7 +31,7 @@ paths:
         - ai-marketplace
       summary: OCR General Document AI Marketplace
       description: AI can read images of documents such as PDF, PNG, and JPG and convert them into text.
-      operationId: https://ocrdoc.infer.visai.ai
+      operationId: https://ocrdoc.infer.visai.ai/predict
       responses:
         "200":
           description: Return list of transcribed text from image or document file

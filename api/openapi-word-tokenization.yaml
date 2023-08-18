@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://wordtokenization.infer.visai.ai/predict
+  - url: https://wordtokenization.infer.visai.ai
     description: Default server
 info:
   title: Word Tokenization
@@ -34,7 +34,7 @@ paths:
       tags:
         - ai-marketplace
       summary: Word Tokenization AI Marketplace
-      operationId: https://wordtokenization.infer.visai.ai
+      operationId: https://wordtokenization.infer.visai.ai/predict
       responses:
         "200":
           description: Return result of breaking raw texts into smaller units. Each unit is called a “token” which can be a word, subword, or character

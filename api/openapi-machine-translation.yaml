@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://mt.infer.visai.ai/predict
+  - url: https://mt.infer.visai.ai
     description: Default server
 info:
   title: Machine Translation
@@ -30,7 +30,7 @@ paths:
       tags:
         - ai-marketplace
       summary: Machine Translation AI Marketplace
-      operationId: https://mt.infer.visai.ai
+      operationId: https://mt.infer.visai.ai/predict
       responses:
         "200":
           description: Return translation result

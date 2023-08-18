@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://stt.infer.visai.ai/predict
+  - url: https://stt.infer.visai.ai
     description: Default server
 info:
   title: Speech to Text
@@ -31,7 +31,7 @@ paths:
         - ai-marketplace
       summary: Speech to Text AI Marketplace
       description: AI can transcribe speech into text, supporting multiple file types such as mp3, wav, and flac.
-      operationId: https://stt.infer.visai.ai
+      operationId: https://stt.infer.visai.ai/predict
       responses:
         "200":
           description: Return list of transcribed text that corresponds to speech detected in audio.

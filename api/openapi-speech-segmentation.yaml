@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://speechsegmentation.infer.visai.ai/demo/predict
+  - url: https://speechsegmentation.infer.visai.ai
     description: Default server
 info:
   title: Speech Segmentation
@@ -30,7 +30,7 @@ paths:
         - ai-marketplace
       summary: Speech Segmentation AI Marketplace
       description: AI can detect human speech from other sounds and is widely used in voice-activated apps.
-      operationId: https://speechsegmentation.infer.visai.ai
+      operationId: https://speechsegmentation.infer.visai.ai/predict
       responses:
         "200":
           description: Return list of time intervals between the human speech or non-speech.

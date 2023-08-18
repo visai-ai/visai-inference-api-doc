@@ -1,6 +1,6 @@
 openapi: 3.0.3
 servers:
-  - url: https://sentiment.infer.visai.ai/predict
+  - url: https://sentiment.infer.visai.ai
     description: Default server
 info:
   title: Sentiment Analysis
@@ -31,7 +31,7 @@ paths:
         - ai-marketplace
       summary: Sentiment Analysis - Product Review
       description: AI categorizes text content by classifying topics or identifying responsible staff mentioned in the text.
-      operationId: https://sentiment.infer.visai.ai
+      operationId: https://sentiment.infer.visai.ai/predict
       responses:
         "200":
           description: Return list of JSON where each element is another key-value object that contains its sentence and its predicted probability of each class.
